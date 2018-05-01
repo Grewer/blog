@@ -12,5 +12,26 @@ npm install
 npm start
 ```
 
+### Dependencies:
+```json
+{
+    "react": "^16.3.2",
+    "react-dom": "^16.3.2",
+    "react-redux": "^5.0.7",
+    "react-router": "^4.2.0",
+    "react-router-dom": "^4.2.2",
+    "react-scripts": "1.1.4",
+    "redux": "^4.0.0",
+    "redux-saga": "^0.16.0",
+    "less": "^3.0.2",
+    "less-loader": "^4.1.0"
+}
+```
+
+### 待添加:
+- axios
+- propTypes
+- classNames
+
 ### Ps:
 今年开了很多坑,希望能够在过年前能将坑都填完
