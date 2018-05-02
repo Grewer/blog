@@ -10,18 +10,22 @@ const menu = [
   {
     path: '/category',
     name: '分类'
+  },
+  {
+    path:'/list',
+    name:'列表'
   }
 ]
 
 
 class Header extends Component {
   render() {
-    let match = window.location.pathname
+    let match = this.props.location.pathname
     return (<div className="navMenu">
       <ul>
         {
           menu.map(i => {
-            return (<li>
+            return (<li key={i.name}>
               <Link to={i.path} className={match === i.path ? 'active' : ''}>{i.name}</Link>
             </li>)
           })
