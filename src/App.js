@@ -18,15 +18,15 @@ class App extends Component {
               <ReactCSSTransitionGroup
                 transitionName="example"
                 component="div"
-                transitionEnterTimeout={500}
-                transitionLeaveTimeout={500}
+                transitionEnterTimeout={300}
+                transitionLeaveTimeout={300}
               >
-                <Switch key={location.pathname}>
-                  <Route path="/" exact key="Home" component={Home}/>
-                  <Route path="/category" key="Category" component={Category}/>
-                </Switch>
+                  <Switch key={location.pathname}>
+                    <Route path="/" exact  component={Home}/>
+                    <Route path="/category"  component={Category}/>
+                  </Switch>
               </ReactCSSTransitionGroup>
-              <div className="footer">尾部</div>
+              <div>尾部</div>
             </div>
           )
         }}/>
