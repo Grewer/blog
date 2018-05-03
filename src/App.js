@@ -11,21 +11,25 @@ class App extends Component {
   render() {
     return (
       <Router>
-        <div className="App">
-          <Route path="/" component={Header}/>
-          <Switch>
-            <ReactCSSTransitionGroup
-              transitionName="example"
-              component="div"
-              transitionEnterTimeout={500}
-              transitionLeaveTimeout={500}
-            >
-              <Route path="/" key="Home" exact component={Home}/>
-              <Route path="/category" key="Category" component={Category}/>
-            </ReactCSSTransitionGroup>
-          </Switch>
-          <div className="footer">尾部</div>
-        </div>
+        <Route render={({location}) => {
+          return (
+            <div className="App">
+              <Route path="/" component={Header}/>
+              <ReactCSSTransitionGroup
+                transitionName="example"
+                component="div"
+                transitionEnterTimeout={500}
+                transitionLeaveTimeout={500}
+              >
+                <Switch key={location.pathname}>
+                  <Route path="/" exact key="Home" component={Home}/>
+                  <Route path="/category" key="Category" component={Category}/>
+                </Switch>
+              </ReactCSSTransitionGroup>
+              <div className="footer">尾部</div>
+            </div>
+          )
+        }}/>
       </Router>
     );
   }
