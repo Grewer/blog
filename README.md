@@ -24,7 +24,9 @@ npm start
     "redux": "^4.0.0",
     "redux-saga": "^0.16.0",
     "less": "^3.0.2",
-    "less-loader": "^4.1.0"
+    "less-loader": "^4.1.0",
+    "mockjs": "^1.0.1-beta3",
+    "axios": "^0.18.0"
 }
 ```
 
