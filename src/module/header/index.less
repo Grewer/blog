@@ -14,10 +14,25 @@
       margin-left: 5%;
       a{
         transition: color .5s;
-        &.active,&:hover{
+        position: relative;
+        &.active{
           color: #03A9F4;
         }
-
+        &:after{
+          content: '';
+          width: 0;
+          position: absolute;
+          bottom: -4px;
+          left: 50%;
+          right: 0;
+          height: 1px;
+          transition: all .5s;
+        }
+        &:hover:after{
+          background-color: #03A9F4;
+          width: 50%;
+          transform: scaleX(2) translate(-25%);;
+        }
       }
     }
 
