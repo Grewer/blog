@@ -1,23 +1,15 @@
 import {delay} from 'redux-saga'
 import {call, put, takeEvery} from 'redux-saga/effects'
-
-let Mock = require('mockjs')
-let data = Mock.mock({
-  'list|10': [{
-    'id|+1': 1,
-    'title': '@sentence(3, 5)',
-    'content': '@paragraph',
-    'time': '@date("yyyy-MM-dd")',
-    'clicks|1-100': 1
-  }]
-})
+import axios from 'axios'
 
 
 function getAjax() {
   return new Promise((resolve, reject) => {
-    setTimeout(() => {
-      resolve(data)
-    }, 1000)
+    axios.post('http://api.cn').then(data => {
+      resolve(data.data)
+    }).catch(err => {
+      reject(err)
+    })
   })
 }
 
@@ -40,4 +32,5 @@ export default function* rootSaga() {
     watchIncrementAsync()
   ]
 }
+
 // 官方例子

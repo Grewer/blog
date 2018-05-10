@@ -11,6 +11,16 @@ import rootSaga from './redux/saga'
 // import articleList from './redux/index';
 import { Provider } from 'react-redux'
 
+let Mock = require('mockjs')
+Mock.mock('http://api.cn',{
+  'list|10': [{
+    'id|+1': 1,
+    'title': '@sentence(3, 5)',
+    'content': '@paragraph',
+    'time': '@date("yyyy-MM-dd")',
+    'clicks|1-100': 1
+  }]
+})
 
 const sagaMiddleware = createSagaMiddleware()
 const store = createStore(
