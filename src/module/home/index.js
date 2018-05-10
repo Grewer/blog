@@ -4,26 +4,16 @@ import './index.less'
 // 后面使用 saga 异步获取
 import {connect} from 'react-redux';
 
-let Mock = require('mockjs')
-let data = Mock.mock({
-  'list|10': [{
-    'id|+1': 1,
-    'title': '@sentence(3, 5)',
-    'content': '@paragraph',
-    'time': '@date("yyyy-MM-dd")',
-    'clicks|1-100': 1
-  }]
-})
 
 
 class Home extends Component {
   render() {
-    const {dispatch,articleList} = this.props
+    const {dispatch,ArticleList} = this.props
     return (
       <div className="body">
       <button onClick={()=>{dispatch({type:'INIT'})}}>测试:调用 dispatch</button>
       {
-        data.list.map((i, index) => {
+        ArticleList.map((i, index) => {
           return (
             <div className="articleBox" key={index}>
               <p>{i.title}</p>
