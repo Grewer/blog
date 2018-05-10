@@ -6,7 +6,6 @@ import Category from './module/category'
 import Header from './module/header'
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
 
-
 class App extends Component {
   render() {
     return (
@@ -21,10 +20,10 @@ class App extends Component {
                 transitionEnterTimeout={300}
                 transitionLeaveTimeout={300}
               >
-                  <Switch key={location.pathname}>
-                    <Route path="/" exact  component={Home}/>
-                    <Route path="/category"  component={Category}/>
-                  </Switch>
+                <Switch key={location.pathname}>
+                  <Route path="/" exact component={Home}/>
+                  <Route path="/category" component={Category}/>
+                </Switch>
               </ReactCSSTransitionGroup>
               <div>尾部</div>
             </div>
@@ -35,4 +34,5 @@ class App extends Component {
   }
 }
 
-export default App;
+
+export default App

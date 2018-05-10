@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 // import Article from '../../components/article'
 import './index.less'
 // 后面使用 saga 异步获取
+import {connect} from 'react-redux';
 
 let Mock = require('mockjs')
 let data = Mock.mock({
@@ -15,10 +16,12 @@ let data = Mock.mock({
 })
 
 
-
 class Home extends Component {
   render() {
-    return (<div className="body">
+    const {dispatch,articleList} = this.props
+    return (
+      <div className="body">
+      <button onClick={()=>{dispatch({type:'INIT'})}}>测试:调用 dispatch</button>
       {
         data.list.map((i, index) => {
           return (
@@ -33,5 +36,9 @@ class Home extends Component {
     </div>);
   }
 }
-
-export default Home;
+function showData(state) {
+  return {
+    ArticleList: state
+  }
+}
+export default connect(showData)(Home);
