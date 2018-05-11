@@ -8,10 +8,9 @@ import {connect} from 'react-redux';
 
 class Home extends Component {
   render() {
-    const {dispatch,ArticleList} = this.props
+    const {ArticleList} = this.props
     return (
       <div className="body">
-      <button onClick={()=>{dispatch({type:'INIT'})}}>测试:调用 dispatch</button>
       {
         ArticleList.map((i, index) => {
           return (

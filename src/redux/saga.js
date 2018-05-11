@@ -1,22 +1,20 @@
-import {delay} from 'redux-saga'
-import {call, put, takeEvery} from 'redux-saga/effects'
+import {call, put} from 'redux-saga/effects'
 import axios from 'axios'
 
 
 function getAjax() {
-  return new Promise((resolve, reject) => {
-    axios.post('http://api.cn').then(data => {
-      resolve(data.data)
-    }).catch(err => {
-      reject(err)
-    })
-  })
+  return axios.post('http://api.cn').then(data => data.data).catch(err => err)
 }
 
 
 export function* initFirstList() {
-  let result = yield getAjax()
-  yield put({type: 'INIT', data: result.list})
+  try {
+    let result = yield call(getAjax)
+    yield put({type: 'INIT', data: result.list})
+  } catch (e) {
+    // ajax 获取失败 放置此处
+    console.log(e)
+  }
 }
 
 

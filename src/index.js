@@ -8,7 +8,6 @@ import { createStore, applyMiddleware } from 'redux'
 import createSagaMiddleware from 'redux-saga'
 import reducer from './redux/reducers'
 import rootSaga from './redux/saga'
-// import articleList from './redux/index';
 import { Provider } from 'react-redux'
 
 let Mock = require('mockjs')
@@ -18,7 +17,8 @@ Mock.mock('http://api.cn',{
     'title': '@sentence(3, 5)',
     'content': '@paragraph',
     'time': '@date("yyyy-MM-dd")',
-    'clicks|1-100': 1
+    'clicks|1-100': 1,
+    'category|1-10':1
   }]
 })
 
