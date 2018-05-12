@@ -4,6 +4,7 @@ import {HashRouter as Router, Route, Switch} from 'react-router-dom';
 import Home from './module/home'
 import Category from './module/category'
 import Header from './module/header'
+import Footer from './module/footer'
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
 
 class App extends Component {
@@ -25,7 +26,7 @@ class App extends Component {
                   <Route path="/category" component={Category}/>
                 </Switch>
               </ReactCSSTransitionGroup>
-              <div>尾部</div>
+              <Footer />
             </div>
           )
         }}/>

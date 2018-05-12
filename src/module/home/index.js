@@ -19,10 +19,10 @@ class Home extends Component {
               <div className="articleBox" key={index}>
                 <p>{i.title}</p>
                 <div>{filterContent(i.content)}</div>
-                <span><svg className="icon" aria-hidden="true">
+                <span title="发布时间"><svg className="icon" aria-hidden="true">
                   <use xlinkHref="#icon-shijian"></use>
                   </svg>
-                  {i.time}</span><span><svg className="icon ft-20" aria-hidden="true">
+                  {i.time}</span><span title="阅读数"><svg className="icon ft-20" aria-hidden="true">
                   <use xlinkHref="#icon-tubiaozhizuomoban"></use>
                   </svg>
                 {i.clicks}</span>
