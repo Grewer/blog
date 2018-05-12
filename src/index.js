@@ -19,7 +19,10 @@ Mock.mock('http://api.cn',{
     'time': '@date("yyyy-MM-dd")',
     'clicks|1-100': 1,
     'category|1-10':1
-  }]
+  }],
+  pageSize:20,
+  pageAllNumber:3,
+  page:1
 })
 
 const sagaMiddleware = createSagaMiddleware()

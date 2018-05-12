@@ -19,16 +19,34 @@ class Home extends Component {
               <div className="articleBox" key={index}>
                 <p>{i.title}</p>
                 <div>{filterContent(i.content)}</div>
-                <span><svg class="icon" aria-hidden="true">
+                <span><svg className="icon" aria-hidden="true">
                   <use xlinkHref="#icon-shijian"></use>
                   </svg>
-                  {i.time}</span><span><svg class="icon ft-20" aria-hidden="true">
+                  {i.time}</span><span><svg className="icon ft-20" aria-hidden="true">
                   <use xlinkHref="#icon-tubiaozhizuomoban"></use>
-                  </svg>{i.clicks}</span>
+                  </svg>
+                {i.clicks}</span>
               </div>
             )
           })
         }
+        <div className="pagination">
+          <button className="btn-prev" disabled={true}>
+            <svg className="icon" aria-hidden="true">
+              <use xlinkHref="#icon-xiangzuo"></use>
+            </svg>
+          </button>
+          <ul>
+            <li className="active">1</li>
+            <li>2</li>
+            <li>3</li>
+          </ul>
+          <button className="btn-next">
+            <svg className="icon" aria-hidden="true">
+              <use xlinkHref="#icon-xiangyou"></use>
+            </svg>
+          </button>
+        </div>
       </div>);
   }
 }
