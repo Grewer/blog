@@ -22,6 +22,7 @@ class Header extends Component {
   render() {
     let match = this.props.location.pathname
     return (<div className="navMenu">
+      <h2 className="title">Grewer</h2>
       <ul>
         {
           menu.map(i => {
@@ -31,6 +32,7 @@ class Header extends Component {
           })
         }
       </ul>
+
     </div>);
   }
 }
