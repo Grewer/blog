@@ -22,6 +22,9 @@
       a{
         transition: color .5s;
         position: relative;
+        svg{
+          margin-right: 5px;
+        }
         &.active{
           color: #409eff;
         }
@@ -43,5 +46,23 @@
       }
     }
 
+  }
+  .contents{
+    display: none;
+    height: 60px;
+    line-height: 60px;
+    float: right;
+    margin-right: 50px;
+  }
+}
+
+@media screen and (max-width: 767px){
+  .navMenu{
+    .contents{
+      display: inline-block;
+    }
+    ul{
+      display: none;
+    }
   }
 }
