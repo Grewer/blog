@@ -53,7 +53,7 @@ class Home extends Component {
 
 function showData(state) {
   return {
-    ArticleList: state
+    ArticleList: state.ArticleList
   }
 }
 
