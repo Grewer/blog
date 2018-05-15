@@ -4,11 +4,11 @@ import {connect} from 'react-redux';
 class PhoneList extends Component {
   render() {
     let {phoneListStatus} = this.props
-    return (<div className={phoneListStatus ? 'block' : 'hidden'}>
+    return (<div className={(phoneListStatus ? 'block' : 'hidden') +' '+ 'phoneList'}>
       <ul>
-        <li>1</li>
-        <li>2</li>
-        <li>3</li>
+        <li key="1">1</li>
+        <li key="2">2</li>
+        <li key="3">3</li>
       </ul>
     </div>);
   }

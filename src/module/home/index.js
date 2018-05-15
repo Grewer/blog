@@ -3,6 +3,7 @@ import React, {Component} from 'react';
 import './index.less'
 // 后面使用 saga 异步获取
 import {connect} from 'react-redux';
+import QueueAnim from 'rc-queue-anim';
 
 function filterContent(val) {
   return val.length > 300 ? val.substr(0, 300) + '...' : val
@@ -13,6 +14,7 @@ class Home extends Component {
     const {ArticleList} = this.props
     return (
       <div className="body">
+        <QueueAnim>
         {
           ArticleList.map((i, index) => {
             return (
@@ -30,6 +32,7 @@ class Home extends Component {
             )
           })
         }
+        </QueueAnim>
         <div className="pagination">
           <button className="btn-prev" disabled={true}>
             <svg className="icon" aria-hidden="true">
