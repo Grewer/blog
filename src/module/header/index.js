@@ -27,7 +27,7 @@ class Header extends Component {
     let {dispatch} = this.props
     let match = this.props.location.pathname
     return (<div className="navMenu">
-      <h2 className="title">Grewer</h2>
+      <h2 className="title"><Link to="/">Grewer</Link></h2>
       <ul >
         {
           menu.map(i => {

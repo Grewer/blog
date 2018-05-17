@@ -6,6 +6,7 @@ import Category from './module/category'
 import Header from './module/header'
 import Footer from './module/footer'
 import PhoneList from './module/header/phoneList'
+import Article from './components/article'
 class App extends Component {
   constructor(props) {
     super(props);
@@ -29,6 +30,7 @@ class App extends Component {
                 <Switch key={location.pathname}>
                   <Route path="/" exact component={Home}/>
                   <Route path="/category" component={Category}/>
+                  <Route path="/article" component={Article}/>
                 </Switch>
               <Footer />
             </div>
