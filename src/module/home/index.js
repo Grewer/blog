@@ -20,7 +20,7 @@ class Home extends Component {
             ArticleList.map((i, index) => {
               return (
                 <div className="articleBox" key={index}>
-                  <p><Link to={'/article?id=' + i.id}>{i.title}</Link></p>
+                  <p><Link to={'/article/' + i.id}>{i.title}</Link></p>
                   <div>{filterContent(i.content)}</div>
                   <span title="发布时间"><svg className="icon" aria-hidden="true">
                   <use xlinkHref="#icon-shijian"></use>
