@@ -9,6 +9,30 @@ const phoneListStatus = (state = false, action) => {
   }
 };
 
+const ArticleLoading = (state = 'loading', action) => {
+  switch (action.type) {
+    case 'LOADING':
+      return state = 'loading'
+    case 'LOADED':
+      return state = 'loaded'
+    case 'FAIL':
+      return state = 'fail'
+    default:
+      return state
+  }
+}
+
+const cacheArticle = (state = {}, action) => {
+  switch (action.type) {
+    case 'CACHE_ADD':
+      let {id, object} = action.data
+      state[id] = object;
+      console.log(state)
+      return state
+    default:
+      return state
+  }
+}
 
 function ArticleList(state = [], action) {
   switch (action.type) {
@@ -23,6 +47,8 @@ function ArticleList(state = [], action) {
 
 const reducers = combineReducers({
   ArticleList,
-  phoneListStatus
+  phoneListStatus,
+  cacheArticle,
+  ArticleLoading
 });
 export default reducers

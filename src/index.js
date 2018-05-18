@@ -11,6 +11,9 @@ import rootSaga from './redux/saga'
 import { Provider } from 'react-redux'
 
 let Mock = require('mockjs')
+Mock.setup({
+  timeout: '1000-1500'
+})
 Mock.mock('http://api.cn',{
   'list|10': [{
     'id|+1': 1,
@@ -23,6 +26,12 @@ Mock.mock('http://api.cn',{
   pageSize:20,
   pageAllNumber:3,
   page:1
+})
+
+Mock.mock('http://api.cn/getArticleById',{
+  'list':{
+    content:'@paragraph'
+  }
 })
 
 const sagaMiddleware = createSagaMiddleware()
