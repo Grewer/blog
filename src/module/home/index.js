@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 // import Article from '../../components/article'
 import './index.less'
-// 后面使用 saga 异步获取
 import {connect} from 'react-redux';
 import QueueAnim from 'rc-queue-anim';
 import {Link} from "react-router-dom";
@@ -52,6 +51,13 @@ class Home extends Component {
           </button>
         </div>
       </div>);
+  }
+
+  componentWillMount() {
+    let list = this.props.ArticleList
+    if (list.length === 0) {
+      this.props.dispatch({type:'TODO_CREATED'})
+    }
   }
 }
 

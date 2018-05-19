@@ -8,6 +8,9 @@ import Footer from './module/footer'
 import PhoneList from './module/header/phoneList'
 import Article from './components/article'
 import NotFound from "./components/404";
+import ReactLoading from 'react-loading';
+import {connect} from "react-redux";
+
 class App extends Component {
   constructor(props) {
     super(props);
@@ -15,26 +18,31 @@ class App extends Component {
       isShow: false
     }
   }
+
   show = () => {
     this.setState((prevState) => ({
       isShow: !prevState.isShow
     }))
   }
+
   render() {
+    let loadingStatus = this.props.loadingStatus
     return (
       <Router>
         <Route render={({location}) => {
           return (
             <div className="App">
-              <Route path="/" component={Header} />
-              <PhoneList  key="PhoneList" />
-                <Switch key={location.pathname}>
-                  <Route path="/" exact component={Home}/>
-                  <Route path="/category" component={Category}/>
-                  <Route path="/article/:id" component={Article}/>
-                  <Route path="*" component={NotFound}/>
-                </Switch>
-              <Footer />
+              <Route path="/" component={Header}/>
+              <PhoneList key="PhoneList"/>
+              {loadingStatus === 'loading' &&
+              <ReactLoading type="bubbles" color="#ddd" height={200} width={100} className="loading"/>}
+              <Switch key={location.pathname}>
+                <Route path="/" exact component={Home}/>
+                <Route path="/category" component={Category}/>
+                <Route path="/article/:id" component={Article}/>
+                <Route path="*" component={NotFound}/>
+              </Switch>
+              <Footer/>
             </div>
           )
         }}/>
@@ -43,5 +51,10 @@ class App extends Component {
   }
 }
 
+function showData(state) {
+  return {
+    loadingStatus: state.ArticleLoading
+  }
+}
 
-export default App
+export default connect(showData)(App);

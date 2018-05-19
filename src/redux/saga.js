@@ -1,28 +1,23 @@
-import {call, put, takeEvery, fork} from 'redux-saga/effects'
-import axios from 'axios'
-
-
-function getAjax() {
-  return axios.post('http://api.cn').then(data => data.data).catch(err => err)
-}
-
-function getOneAjax(id) {
-  return axios.post('http://api.cn/getArticleById', {id}).then(data => {
-    console.log(data);
-    return data.data
-  }).catch(err => err)
-}
+import {call, put, takeEvery, fork, take} from 'redux-saga/effects'
+import {
+  getAjax,
+  getOneAjax,
+} from './ajax'
 
 export function* initFirstList() {
   try {
+    yield fork(changeLoadingStatus)
     let result = yield call(getAjax)
     yield put({type: 'INIT', data: result.list})
+    yield fork(changeLoadingStatus, 'LOADED')
   } catch (e) {
   }
 }
 
+
 function* getOneArticle(data) {
   try {
+    yield fork(changeLoadingStatus)
     let result = yield call(getOneAjax, data.data)
     yield put({type: 'CACHE_ADD', data: {id: data.data, object: result.list}})
     yield fork(changeLoadingStatus, 'LOADED')
@@ -35,21 +30,30 @@ function* changeLoadingStatus(type = 'LOADING') {
   yield put({type})
 }
 
-function* watchCacheAsync() {
-  yield takeEvery('CACHE_ADD', changeLoadingStatus)
-}
 
+//watch start
 
-export function* watchIncrementAsync() {
+function* watchIncrementAsync() {
   yield takeEvery('GETONE', getOneArticle)
 }
+
+
+function* watchInit() {
+  yield take('TODO_CREATED')
+  yield call(initFirstList)
+}
+
+
+//watch end
+
+
+
 
 // single entry point to start all Sagas at once
 export default function* rootSaga() {
   yield [
-    initFirstList(),
+    watchInit(),
     watchIncrementAsync(),
-    watchCacheAsync()
   ]
 }
 

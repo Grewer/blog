@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import ReactLoading from 'react-loading';
 import {connect} from "react-redux";
 
 // 首页即获取所有博客内容
@@ -9,11 +8,10 @@ import {connect} from "react-redux";
 class Article extends Component {
   render() {
     const {id} = this.props.match.params
-    let result = this.props.cacheArticle[id]
-    let loadingStatus = this.props.loadingStatus
+    let result = this.props.cacheArticle[id] || {}
     return (
-      <div>{loadingStatus === 'loaded' ? result.content :
-        <ReactLoading type="bubbles" color="#ddd" height={200} width={100} className="loading"/>}</div>
+      <div>{ result.content
+        }</div>
     )
   }
 
@@ -23,6 +21,8 @@ class Article extends Component {
     let result = this.props.cacheArticle[id]
     if (!result) {
       this.props.dispatch({type: 'GETONE', data: id})
+      // loading 只能写在 saga 里么吗? 如果是 那每种独特的组件都要写一个么
+      // 如果不是 则怎么写 无法得知 loading 结束
     }
   }
 }

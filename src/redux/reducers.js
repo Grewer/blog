@@ -27,8 +27,7 @@ const cacheArticle = (state = {}, action) => {
     case 'CACHE_ADD':
       let {id, object} = action.data
       state[id] = object;
-      console.log(state)
-      return state
+      return Object.assign({}, state)
     default:
       return state
   }
