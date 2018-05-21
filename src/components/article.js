@@ -10,19 +10,26 @@ class Article extends Component {
     const {id} = this.props.match.params
     let result = this.props.cacheArticle[id] || {}
     return (
-      <div>{ result.content
-        }</div>
+      <div className="body aPage">
+        <p>{result.title}</p>
+        <div className="content">
+          {result.content}
+        </div>
+        {
+          result.time ? (<span title="发布时间"><svg className="icon" aria-hidden="true">
+                  <use xlinkHref="#icon-shijian"></use>
+                  </svg>
+            {result.time}</span>): ''
+        }
+      </div>
     )
   }
 
   componentWillMount() {
-    // 修改 页面回到首页再次进入此页面时该生命周期不会触发
     const {id} = this.props.match.params
     let result = this.props.cacheArticle[id]
     if (!result) {
       this.props.dispatch({type: 'GETONE', data: id})
-      // loading 只能写在 saga 里么吗? 如果是 那每种独特的组件都要写一个么
-      // 如果不是 则怎么写 无法得知 loading 结束
     }
   }
 }

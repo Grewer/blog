@@ -56,7 +56,7 @@ class Home extends Component {
   componentWillMount() {
     let list = this.props.ArticleList
     if (list.length === 0) {
-      this.props.dispatch({type:'TODO_CREATED'})
+      this.props.dispatch({type: 'TODO_CREATED'})
     }
   }
 }

@@ -30,7 +30,12 @@ Mock.mock('http://api.cn',{
 
 Mock.mock('http://api.cn/getArticleById',{
   'list':{
-    content:'@paragraph'
+    content:'@paragraph',
+    title:'@sentence(3, 5)',
+    time: '@date("yyyy-MM-dd")',
+    // comment:[],
+    // next:{title:'',id:''},
+    // prev:''
   }
 })
 

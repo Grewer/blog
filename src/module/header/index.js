@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import './index.less'
-import {Link} from "react-router-dom";
+import {Link, NavLink} from "react-router-dom";
 import {connect} from 'react-redux';
 
 const menu = [
@@ -25,18 +25,17 @@ const menu = [
 class Header extends Component {
   render() {
     let {dispatch} = this.props
-    let match = this.props.location.pathname
     return (<div className="navMenu">
       <h2 className="title"><Link to="/">Grewer</Link></h2>
       <ul >
         {
           menu.map(i => {
             return (<li key={i.name}>
-              <Link to={i.path} className={match === i.path ? 'active' : ''}>
+              <NavLink to={i.path} activeClassName="active" exact>
                 <svg className="icon" aria-hidden="true" >
                   <use xlinkHref={'#icon-' + i.icon}></use>
                 </svg>
-                {i.name}</Link>
+                {i.name}</NavLink>
             </li>)
           })
         }
