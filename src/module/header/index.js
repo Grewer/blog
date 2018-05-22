@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 import './index.less'
 import {Link, NavLink} from "react-router-dom";
 import {connect} from 'react-redux';
-
 const menu = [
   {
     path: '/',
@@ -20,7 +19,6 @@ const menu = [
     icon: 'guidangxiangmu'
   }
 ]
-
 
 class Header extends Component {
   render() {

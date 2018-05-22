@@ -28,13 +28,16 @@ npm start
     "mockjs": "^1.0.1-beta3",
     "axios": "^0.18.0",
     "rc-queue-anim": "^1.5.0",
-    "react-loading": "^2.0.2"
+    "react-loading": "^2.0.2",
+    "babel-plugin-transform-decorators-legacy": "^1.3.4",
+    "pure-render-decorator": "^1.2.1"
 }
 ```
 
 ### 待添加:
 - propTypes
 - classNames
+- react-placeholder or react-hold
 
 ### Ps:
 今年开了很多坑,希望能够在过年前能将坑都填完

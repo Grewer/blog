@@ -1,6 +1,9 @@
 import React, {Component} from 'react';
 import './index.less'
+import pureRender from "pure-render-decorator";
 
+
+@pureRender
 class Footer extends Component {
   // 待加上 博客园 GitHub 链接
   render() {
