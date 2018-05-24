@@ -33,7 +33,7 @@ Mock.mock('http://api.cn/getArticleById', {
     content: '@paragraph',
     title: '@sentence(3, 5)',
     time: '@date("yyyy-MM-dd")',
-    'comments|2-10': [{content: '@sentence(3, 5)', 'id|1-100': '1',name:'@sentence(2, 4)', avatar: '', reply: {'id|1-10': 1, name: '@sentence(1, 2)'}}],
+    'comments|2-10': [{content: '@sentence(3, 5)',time:'@date("yyyy-MM-dd")', 'id|+1': 1,name:'@sentence(2, 4)', avatar: '', reply: {'id|1-10': 1, name: '@sentence(1, 2)'}}],
     // next:{title:'',id:''},
     // prev:''
   }
