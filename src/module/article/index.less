@@ -3,34 +3,60 @@
   border-top: 1px solid rgba(150, 150, 150, 0.2);
   color: rgba(0, 0, 0, 0.6);
   margin: 50px 0;
-  li{
+
+  span {
+    margin-right: 10px;
+  }
+  li {
     position: relative;
     padding: 25px 0;
     border-bottom: 1px solid rgba(150, 150, 150, 0.2);
   }
-  img.avatar{
+  img.avatar {
     position: absolute;
     top: 25px;
     left: 0;
     width: 50px;
     float: left;
   }
-  .commentBody{
+  .commentBody {
     margin-left: 70px;
     display: block;
-    .author{
+    .author {
       line-height: 1.5em;
       margin: 0;
       padding: 0;
-      span{
+      span {
         color: #555;
       }
-      .time{
+      .time {
         font-weight: normal;
         padding-left: 10px;
         font-size: 0.7em;
         color: #666;
       }
     }
+  }
+}
+
+.category {
+  span {
+    display: inline-block;
+    background-color: #ddd;
+    color: #222;
+    border-radius: 20px;
+    padding: 5px 20px;
+    margin-top: 10px;
+  }
+}
+
+.post_next_prev {
+  margin: 20px 0;
+  color: rgba(0, 0, 0, 0.8);
+  > div {
+    margin-bottom: 5px;
+  }
+  span {
+    margin-right: 10px;
   }
 }

@@ -8,19 +8,32 @@ class Article extends Component {
     const {id} = this.props.match.params
     let result = this.props.cacheArticle[id] || {}
     return (
-      <div className="body aPage">
-        <p>{result.title}</p>
-        <div className="content">
-          {result.content}
-        </div>
-        {
-          result.time ? (<span title="发布时间"><svg className="icon" aria-hidden="true">
+      result.next ?
+        <div className="body aPage">
+          <p>{result.title}</p>
+          <div className="content">
+            {result.content}
+          </div>
+          {
+            result.time ? (<span title="发布时间"><svg className="icon" aria-hidden="true">
                   <use xlinkHref="#icon-shijian"></use>
                   </svg>
-            {result.time}</span>) : null
-        }
-        <Comment comment={result.comments}/>
-      </div>
+              {result.time}</span>) : null
+          }
+          <div className="category">
+            {
+              result.label.map(i => {
+                return <span>{i}</span>
+              })
+            }
+          </div>
+          <div className="post_next_prev">
+            <div className="prev"><span>上一篇:</span>{result.prev.name}</div>
+            <div className="next"><span>下一篇:</span>{result.next.name}</div>
+          </div>
+          <Comment comment={result.comments}/>
+        </div>
+        : null
     )
   }
 

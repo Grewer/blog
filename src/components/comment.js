@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import default_avatar from '../static/pic/avatar_default.png'
 
 class Comment extends Component {
   render() {
@@ -7,7 +8,7 @@ class Comment extends Component {
       <ul>
         {
           comments.map(i => <li key={i.id}>
-              <img className="avatar" src={i.avatar || require('../static/pic/avatar_default.png')} alt={i.name}/>
+              <img className="avatar" src={i.avatar || default_avatar} alt={i.name}/>
               <div className="commentBody">
                 <div className="author"><span>{i.name}</span><span className="time">{i.time}</span></div>
                 <div>
