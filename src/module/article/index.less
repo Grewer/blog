@@ -37,16 +37,41 @@
       }
     }
   }
+  .operate {
+    font-size: 14px;
+    margin-top: 20px;
+    text-align: right;
+    > span {
+      margin-right: 10px;
+      margin-bottom: 5px;
+      cursor: pointer;
+      &:hover,&:hover>span{
+        color: #409eff;
+      }
+      > span {
+        margin-right: 5px;
+      }
+    }
+  }
+}
+
+.nowrap {
+  white-space: nowrap;
 }
 
 .category {
   span {
     display: inline-block;
-    background-color: #ddd;
     color: #222;
-    border-radius: 20px;
     padding: 5px 20px;
     margin-top: 10px;
+    white-space: nowrap;
+    background-color: #f1f8ff;
+    border-radius: 3px;
+    cursor: pointer;
+  }
+  span:hover {
+    background-color: #def;
   }
 }
 
@@ -55,8 +80,13 @@
   color: rgba(0, 0, 0, 0.8);
   > div {
     margin-bottom: 5px;
+
   }
   span {
-    margin-right: 10px;
+    margin-left: 10px;
+    cursor: pointer;
+  }
+  span:hover {
+    color: #409eff;
   }
 }

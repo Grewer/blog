@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import QueueAnim from 'rc-queue-anim';
+import {Link} from "react-router-dom";
 
 const menu = [
   {
@@ -28,11 +29,13 @@ class PhoneList extends Component {
       {
         phoneListStatus ? <ul key="ul">{
             menu.map(i => {
-              return (<li key={i.path}>
-                <svg className="icon" aria-hidden="true">
-                  <use xlinkHref={'#icon-' + i.icon}></use>
-                </svg>
-                {i.name}</li>)
+              return (<Link to={i.path} key={i.path}>
+                <li>
+                  <svg className="icon" aria-hidden="true">
+                    <use xlinkHref={'#icon-' + i.icon}></use>
+                  </svg>
+                  {i.name}</li>
+              </Link>)
             })}
           </ul>
           : null

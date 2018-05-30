@@ -17,6 +17,18 @@ class Comment extends Component {
                   }
                   {i.content}
                 </div>
+                <div className="operate">
+                  <span><span>赞同</span>
+                <svg className="icon" aria-hidden="true">
+                  <use xlinkHref="#icon-zantong"></use>
+                </svg>({i.agree})</span>
+                  <span> <span>反对</span>
+                <svg className="icon" aria-hidden="true">
+                  <use xlinkHref="#icon-zantong1"></use>
+                </svg>({i.disagree})</span>
+                  <span className="nowrap"> 查看对话</span>
+                  <span> 回复</span>
+                </div>
               </div>
             </li>
           )

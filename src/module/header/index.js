@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import './index.less'
 import {Link, NavLink} from "react-router-dom";
 import {connect} from 'react-redux';
+
 const menu = [
   {
     path: '/',
@@ -20,17 +21,20 @@ const menu = [
   }
 ]
 
+
 class Header extends Component {
+
   render() {
+    // 父组件为 route 时 shouldupdate 第二个参数一直为 null
     let {dispatch} = this.props
     return (<div className="navMenu">
       <h2 className="title"><Link to="/">Grewer</Link></h2>
-      <ul >
+      <ul>
         {
           menu.map(i => {
             return (<li key={i.name}>
               <NavLink to={i.path} activeClassName="active" exact>
-                <svg className="icon" aria-hidden="true" >
+                <svg className="icon" aria-hidden="true">
                   <use xlinkHref={'#icon-' + i.icon}></use>
                 </svg>
                 {i.name}</NavLink>
@@ -38,7 +42,7 @@ class Header extends Component {
           })
         }
       </ul>
-      <svg className="icon ft-30 contents" aria-hidden="true" onClick={()=>{dispatch({type:'CHANGE'})}}>
+      <svg className="icon ft-30 contents" aria-hidden="true" onClick={() => {dispatch({type: 'CHANGE'})}}>
         <use xlinkHref="#icon-mulu"></use>
       </svg>
     </div>);

@@ -32,7 +32,7 @@ class App extends Component {
         <Route render={({location}) => {
           return (
             <div className="App">
-              <Route path="/" component={Header}/>
+              <Header location={location}/>
               <PhoneList key="PhoneList"/>
               {loadingStatus === 'loading' &&
               <ReactLoading type="bubbles" color="#ddd" height={200} width={100} className="loading"/>}

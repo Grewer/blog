@@ -22,14 +22,14 @@ class Article extends Component {
           }
           <div className="category">
             {
-              result.label.map(i => {
-                return <span>{i}</span>
+              result.label.map((i, index) => {
+                return <span key={index}>{i}</span>
               })
             }
           </div>
           <div className="post_next_prev">
-            <div className="prev"><span>上一篇:</span>{result.prev.name}</div>
-            <div className="next"><span>下一篇:</span>{result.next.name}</div>
+            <div className="prev">上一篇: <span>{result.prev.name}</span></div>
+            <div className="next">下一篇: <span>{result.next.name}</span></div>
           </div>
           <Comment comment={result.comments}/>
         </div>
