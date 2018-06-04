@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import QueueAnim from 'rc-queue-anim';
 import {Link} from "react-router-dom";
+import pureRender from "pure-render-decorator";
 
 const menu = [
   {
@@ -21,6 +22,7 @@ const menu = [
   }
 ]
 
+@pureRender
 class PhoneList extends Component {
   render() {
     let {phoneListStatus} = this.props

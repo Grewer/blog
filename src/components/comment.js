@@ -1,6 +1,9 @@
 import React, {Component} from 'react';
 import default_avatar from '../static/pic/avatar_default.png'
+import pureRender from "pure-render-decorator";
 
+
+@pureRender
 class Comment extends Component {
   render() {
     let comments = this.props.comment || []

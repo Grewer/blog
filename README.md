@@ -30,7 +30,12 @@ npm start
     "rc-queue-anim": "^1.5.0",
     "react-loading": "^2.0.2",
     "babel-plugin-transform-decorators-legacy": "^1.3.4",
-    "pure-render-decorator": "^1.2.1"
+    "pure-render-decorator": "^1.2.1",
+    "react-markdown": "^3.3.2",
+    "react-draft-wysiwyg": "^1.12.13",
+    "draft-js": "^0.10.5",
+    "immutable": "^3.8.2"
+
 }
 ```
 

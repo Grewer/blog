@@ -2,7 +2,11 @@ import React, {Component} from 'react';
 import {connect} from "react-redux";
 import Comment from '../../components/comment'
 import './index.less'
+import pureRender from "pure-render-decorator";
+import { Editor } from 'react-draft-wysiwyg';
+import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
 
+@pureRender
 class Article extends Component {
   render() {
     const {id} = this.props.match.params
@@ -32,6 +36,9 @@ class Article extends Component {
             <div className="next">下一篇: <span>{result.next.name}</span></div>
           </div>
           <Comment comment={result.comments}/>
+          <Editor
+            editorClassName="editor"
+          />
         </div>
         : null
     )
