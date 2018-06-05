@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import QueueAnim from 'rc-queue-anim';
 import {Link} from "react-router-dom";
-import pureRender from "pure-render-decorator";
+import pureRender from "grewer-pure-render";
 
 const menu = [
   {

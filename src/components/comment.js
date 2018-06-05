@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import default_avatar from '../static/pic/avatar_default.png'
-import pureRender from "pure-render-decorator";
+import pureRender from "grewer-pure-render";
 
 
 @pureRender

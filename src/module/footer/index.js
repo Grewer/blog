@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import './index.less'
-import pureRender from "pure-render-decorator";
+import pureRender from "grewer-pure-render";
 
 
 @pureRender
