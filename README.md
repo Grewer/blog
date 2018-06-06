@@ -26,7 +26,7 @@ npm start
     "less": "^3.0.2",
     "less-loader": "^4.1.0",
     "mockjs": "^1.0.1-beta3",
-    "axios": "^0.18.0",
+    "gfetch": "^1.6.0",
     "rc-queue-anim": "^1.5.0",
     "react-loading": "^2.0.2",
     "babel-plugin-transform-decorators-legacy": "^1.3.4",

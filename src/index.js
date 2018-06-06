@@ -3,13 +3,12 @@ import ReactDOM from 'react-dom';
 import App from './App';
 import registerServiceWorker from './registerServiceWorker';
 import './static/css/common.css'
-
+import './flexible'
 import {createStore, applyMiddleware} from 'redux'
 import createSagaMiddleware from 'redux-saga'
 import reducer from './redux/reducers'
 import rootSaga from './redux/saga'
 import {Provider} from 'react-redux'
-
 let Mock = require('mockjs')
 Mock.setup({
   timeout: '1000-1500'
