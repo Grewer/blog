@@ -9,7 +9,7 @@ const phoneListStatus = (state = false, action) => {
   }
 };
 
-const ArticleLoading = (state = 'loading', action) => {
+const ArticleLoading = (state = 'loaded', action) => {
   switch (action.type) {
     case 'LOADING':
       return state = 'loading'

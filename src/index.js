@@ -44,10 +44,22 @@ Mock.mock('http://api.cn/getArticleById', {
       reply: {'id|1-10': 1, name: '@sentence(1, 2)'},
       agree: 10,
       disagree: 20
-    }],
-    // next:{title:'',id:''},
-    // prev:''
+    }]
   }
+})
+
+Mock.mock(/getCategory$/, {
+  'data|5':[
+    {
+      type:'@sentence(2, 4)',
+      'list|10':[
+        {
+          title:'@sentence(2, 4)',
+          time:'@date("yyyy-MM-dd")'
+        }
+      ]
+    }
+  ]
 })
 
 const sagaMiddleware = createSagaMiddleware()
