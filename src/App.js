@@ -10,6 +10,7 @@ import Article from './module/article'
 import NotFound from "./components/404";
 import ReactLoading from 'react-loading';
 import {connect} from "react-redux";
+import Archives from './module/archives'
 
 class App extends Component {
   constructor(props) {
@@ -39,6 +40,7 @@ class App extends Component {
               <Switch key={location.pathname}>
                 <Route path="/" exact component={Home}/>
                 <Route path="/category" component={Category}/>
+                <Route path="/archives" component={Archives}/>
                 <Route path="/article/:id" component={Article}/>
                 <Route path="*" component={NotFound}/>
               </Switch>

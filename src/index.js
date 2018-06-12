@@ -62,6 +62,21 @@ Mock.mock(/getCategory$/, {
   ]
 })
 
+Mock.mock(/getArchives$/, {
+  'data|5':[
+    {
+      time:'@date("yyyy")',
+      'list|2-30':[
+        {
+          title:'@sentence(2, 4)',
+          'time': '@date("MM-dd")',
+          'id|+1':'1'
+        }
+      ]
+    }
+  ]
+})
+
 const sagaMiddleware = createSagaMiddleware()
 const store = createStore(
   reducer,

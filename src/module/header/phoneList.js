@@ -16,7 +16,7 @@ const menu = [
     icon: 'fenlei1'
   },
   {
-    path: '/list',
+    path: '/archives',
     name: '归档',
     icon: 'guidangxiangmu'
   }
