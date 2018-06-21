@@ -28,7 +28,7 @@
     "extract-text-webpack-plugin": "3.0.2",
     "file-loader": "1.1.5",
     "fs-extra": "3.0.1",
-    "gfetch": "^1.6.0",
+    "gfetch": "^2.0.6",
     "grewer-pure-render": "^0.1.0",
     "html-webpack-plugin": "2.29.0",
     "immutable": "^3.8.2",
@@ -47,6 +47,7 @@
     "react-dev-utils": "^5.0.1",
     "react-dom": "^16.3.2",
     "react-draft-wysiwyg": "^1.12.13",
+    "react-hold": "^0.2.1",
     "react-loading": "^2.0.2",
     "react-markdown": "^3.3.2",
     "react-redux": "^5.0.7",
@@ -109,6 +110,7 @@
       "transform-decorators-legacy"
     ]
   },
+  "homepage": ".",
   "eslintConfig": {
     "extends": "react-app"
   }
