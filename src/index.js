@@ -9,6 +9,7 @@ import createSagaMiddleware from 'redux-saga'
 import reducer from './redux/reducers'
 import rootSaga from './redux/saga'
 import {Provider} from 'react-redux'
+import "react-placeholder/lib/reactPlaceholder.css";
 let Mock = require('mockjs')
 Mock.setup({
   timeout: '1000-1500'
