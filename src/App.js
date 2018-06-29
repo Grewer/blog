@@ -8,7 +8,6 @@ import Footer from './module/footer'
 import PhoneList from './module/header/phoneList'
 import Article from './module/article'
 import NotFound from "./components/404";
-import ReactLoading from 'react-loading';
 import {connect} from "react-redux";
 import Archives from './module/archives'
 
