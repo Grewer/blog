@@ -12,7 +12,9 @@ function MyComponent({data}) {
         <ul className="dateList">
           {i.list.map((j, _index) => {
             return (
-              <li key={_index}>
+             <li key={_index} onClick={()=>{
+               // router to article/id
+             }}>
                 <div className="ellipsis">{j.title}</div>
                 <div className="date">{j.time}</div>
               </li>
@@ -37,14 +39,13 @@ class Archives extends Component {
     this.state = {
       list: ''
     }
-    console.log(this)
   }
 
   render() {
     return (
-      <div className="body"><ReactPlaceholder customPlaceholder={awesomePlaceholder} ready={!!this.state.list}>
+      <ReactPlaceholder customPlaceholder={awesomePlaceholder} ready={!!this.state.list}>
         <MyComponent data={this.state.list}/>
-      </ReactPlaceholder></div>)
+      </ReactPlaceholder>)
   }
 
   componentWillMount() {

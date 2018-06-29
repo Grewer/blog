@@ -28,7 +28,6 @@ npm start
     "mockjs": "^1.0.1-beta3",
     "gfetch": "^2.0.6",
     "rc-queue-anim": "^1.5.0",
-    "react-loading": "^2.0.2", // 待去除
     "babel-plugin-transform-decorators-legacy": "^1.3.4",
     "grewer-pure-render": "^0.1.0",
     "react-markdown": "^3.3.2",

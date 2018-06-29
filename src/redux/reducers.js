@@ -9,18 +9,6 @@ const phoneListStatus = (state = false, action) => {
   }
 };
 
-const ArticleLoading = (state = 'loaded', action) => {
-  switch (action.type) {
-    case 'LOADING':
-      return state = 'loading'
-    case 'LOADED':
-      return state = 'loaded'
-    case 'FAIL':
-      return state = 'fail'
-    default:
-      return state
-  }
-}
 
 const cacheArticle = (state = {}, action) => {
   switch (action.type) {
@@ -48,6 +36,5 @@ const reducers = combineReducers({
   ArticleList,
   phoneListStatus,
   cacheArticle,
-  ArticleLoading
 });
 export default reducers

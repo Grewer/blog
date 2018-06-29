@@ -6,10 +6,8 @@ import {
 
 export function* initFirstList() {
   try {
-    yield fork(changeLoadingStatus)
     let result = yield call(getAjax)
     yield put({type: 'INIT', data: result.list})
-    yield fork(changeLoadingStatus, 'LOADED')
   } catch (e) {
   }
 }
@@ -17,18 +15,13 @@ export function* initFirstList() {
 
 function* getOneArticle(data) {
   try {
-    yield fork(changeLoadingStatus)
     let result = yield call(getOneAjax, data.data)
     yield put({type: 'CACHE_ADD', data: {id: data.data, object: result.list}})
-    yield fork(changeLoadingStatus, 'LOADED')
   } catch (e) {
     yield put({type: 'FAIL'}) // TODO 添加失败的画面
   }
 }
 
-function* changeLoadingStatus(type = 'LOADING') {
-  yield put({type})
-}
 
 
 //watch start
