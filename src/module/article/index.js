@@ -4,7 +4,7 @@ import Comment from '../../components/comment'
 import './index.less'
 import ToMessage from "../../components/toMessage";
 import ReactPlaceholder from 'react-placeholder';
-import {TextBlock, RectShape, TextRow} from 'react-placeholder/lib/placeholders';
+import {TextBlock, RectShape} from 'react-placeholder/lib/placeholders';
 
 function MyComponent(data) {
   const result = data.data

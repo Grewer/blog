@@ -46,3 +46,24 @@ npm start
 
 ### Ps:
 今年开了很多坑,希望能够在过年前能将坑都填完
+
+
+### 打包优化插件:
+原 js,css 大小
+- js: 1.1M
+- css: 31k
+
+1. 添加 optimize-css-assets-webpack-plugin
+css -> 30k
+// todo 后续使用 css-module 
+
+2. 使用 CommonsChunkPlugin 将 node-module 库单独引用出来:
+
+js: main  30k
+    vendor 1MB
+
+结论,如果不使用 cdn 加速 那么还不如不提取;
+
+3. todo 后续使用 gzip 
+   
+

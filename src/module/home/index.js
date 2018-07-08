@@ -1,11 +1,10 @@
 import React, {Component} from 'react';
-// import Article from '../../components/article'
 import './index.less'
 import {connect} from 'react-redux';
 import QueueAnim from 'rc-queue-anim';
 import {Link} from "react-router-dom";
 import ReactPlaceholder from 'react-placeholder';
-import {TextBlock, RectShape, TextRow} from 'react-placeholder/lib/placeholders';
+import {TextBlock, RectShape} from 'react-placeholder/lib/placeholders';
 
 function filterContent(val) {
   return val.length > 300 ? val.substr(0, 300) + '...' : val
