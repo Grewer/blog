@@ -1,7 +1,8 @@
 import React, {Component} from 'react';
-import './index.less'
+import styles from './index.less'
 import {Link, NavLink} from "react-router-dom";
 import {connect} from 'react-redux';
+import CSSModules from "react-css-modules";
 
 const menu = [
   {
@@ -23,17 +24,16 @@ const menu = [
 
 
 class Header extends Component {
-
   render() {
     // 父组件为 route 时 shouldupdate 第二个参数一直为 null
     let {dispatch} = this.props
-    return (<div className="navMenu">
-      <h2 className="title"><Link to="/">Grewer</Link></h2>
+    return (<div styleName="navMenu">
+      <h2 styleName="title"><Link to="/">Grewer</Link></h2>
       <ul>
         {
           menu.map(i => {
             return (<li key={i.name}>
-              <NavLink to={i.path} activeClassName="active" exact>
+              <NavLink to={i.path} activestyleName="active" exact>
                 <svg className="icon" aria-hidden="true">
                   <use xlinkHref={'#icon-' + i.icon}></use>
                 </svg>
@@ -42,11 +42,11 @@ class Header extends Component {
           })
         }
       </ul>
-      <svg className="icon ft-30 contents" aria-hidden="true" onClick={() => {dispatch({type: 'CHANGE'})}}>
+      <svg styleName="contents" className="icon ft-30" aria-hidden="true" onClick={() => {dispatch({type: 'CHANGE'})}}>
         <use xlinkHref="#icon-mulu"></use>
       </svg>
     </div>);
   }
 }
 
-export default connect()(Header);
+export default connect()(CSSModules(Header,styles));

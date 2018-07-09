@@ -5,6 +5,7 @@ import QueueAnim from 'rc-queue-anim';
 import {Link} from "react-router-dom";
 import ReactPlaceholder from 'react-placeholder';
 import {TextBlock, RectShape} from 'react-placeholder/lib/placeholders';
+import CSSModules from 'react-css-modules';
 
 function filterContent(val) {
   return val.length > 300 ? val.substr(0, 300) + '...' : val
