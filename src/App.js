@@ -8,8 +8,8 @@ import Footer from './module/footer'
 import PhoneList from './module/header/phoneList'
 import Article from './module/article'
 import NotFound from "./components/404";
-import {connect} from "react-redux";
 import Archives from './module/archives'
+
 
 class App extends Component {
   constructor(props) {
@@ -51,10 +51,5 @@ class App extends Component {
   }
 }
 
-function showData(state) {
-  return {
-    loadingStatus: state.ArticleLoading
-  }
-}
 
-export default connect(showData)(App);
+export default App;

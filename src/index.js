@@ -2,7 +2,9 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
 import registerServiceWorker from './registerServiceWorker';
-import './static/css/common.css'
+import style from './static/css/common.css'
+
+
 import './flexible'
 import {createStore, applyMiddleware} from 'redux'
 import createSagaMiddleware from 'redux-saga'
