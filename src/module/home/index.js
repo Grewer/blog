@@ -1,11 +1,11 @@
 import React, {Component} from 'react';
-import './index.less'
+import styles from './index.less'
 import {connect} from 'react-redux';
 import QueueAnim from 'rc-queue-anim';
 import {Link} from "react-router-dom";
 import ReactPlaceholder from 'react-placeholder';
 import {TextBlock, RectShape} from 'react-placeholder/lib/placeholders';
-import CSSModules from 'react-css-modules';
+import Pagination from '../../components/pagination'
 
 function filterContent(val) {
   return val.length > 300 ? val.substr(0, 300) + '...' : val
@@ -32,23 +32,7 @@ function MyComponent(data) {
             </div>)
         }
       </QueueAnim>
-      <div className="pagination">
-        <button className="btn-prev" disabled={true}>
-          <svg className="icon" aria-hidden="true">
-            <use xlinkHref="#icon-xiangzuo"></use>
-          </svg>
-        </button>
-        <ul>
-          <li className="active">1</li>
-          <li>2</li>
-          <li>3</li>
-        </ul>
-        <button className="btn-next">
-          <svg className="icon" aria-hidden="true">
-            <use xlinkHref="#icon-xiangyou"></use>
-          </svg>
-        </button>
-      </div>
+      <Pagination></Pagination>
     </div>);
 }
 
@@ -63,6 +47,10 @@ const awesomePlaceholder = (
   </div>
 );
 
+
+@connect(
+  state => ({ArticleList: state.ArticleList})
+)
 class Home extends Component {
   render() {
     return (
@@ -79,10 +67,5 @@ class Home extends Component {
   }
 }
 
-function showData(state) {
-  return {
-    ArticleList: state.ArticleList
-  }
-}
 
-export default connect(showData)(Home);
+export default Home;

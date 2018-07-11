@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import './App.less'
+import styles from './App.less'
 import {HashRouter as Router, Route, Switch} from 'react-router-dom';
 import Home from './module/home'
 import Category from './module/category'
@@ -9,31 +9,18 @@ import PhoneList from './module/header/phoneList'
 import Article from './module/article'
 import NotFound from "./components/404";
 import Archives from './module/archives'
-
+import CSSModules from 'react-css-modules';
 
 class App extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      isShow: false
-    }
-  }
-
-  show = () => {
-    this.setState((prevState) => ({
-      isShow: !prevState.isShow
-    }))
-  }
-
   render() {
     return (
       <Router>
-        <Route render={({location}) => {
+        <Route render={CSSModules(({location}) => {
           return (
-            <div className="App">
+            <div styleName="App">
               <Header location={location}/>
               <PhoneList key="PhoneList"/>
-              <div className="body">
+              <div styleName="body">
                 <Switch key={location.pathname}>
                   <Route path="/" exact component={Home}/>
                   <Route path="/category" component={Category}/>
@@ -45,7 +32,7 @@ class App extends Component {
               <Footer/>
             </div>
           )
-        }}/>
+        }, styles)}/>
       </Router>
     );
   }
