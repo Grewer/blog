@@ -22,7 +22,8 @@ const menu = [
   }
 ]
 
-
+@connect()
+@CSSModules(styles)
 class Header extends Component {
   render() {
     // 父组件为 route 时 shouldupdate 第二个参数一直为 null
@@ -49,4 +50,4 @@ class Header extends Component {
   }
 }
 
-export default connect()(CSSModules(Header,styles));
+export default Header;

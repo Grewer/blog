@@ -1,13 +1,16 @@
 import React, {Component} from 'react';
 import {connect} from "react-redux";
 import Comment from '../../components/comment'
-import './index.less'
+import styles from './index.less'
 import ToMessage from "../../components/toMessage";
 import ReactPlaceholder from 'react-placeholder';
 import {TextBlock, RectShape} from 'react-placeholder/lib/placeholders';
+import CSSModules from "react-css-modules";
+import pureRender from "grewer-pure-render";
 
 function MyComponent(data) {
   const result = data.data
+  if(!result) return;
   return (
     <div className="aPage">
       <p>{result.title}</p>
@@ -46,19 +49,24 @@ const awesomePlaceholder = (
   </div>
 );
 
-
+@pureRender
+@connect(state => ({
+  cacheArticle: state.cacheArticle,
+  loadingStatus: state.ArticleLoading
+}))
+@CSSModules(styles)
 class Article extends Component {
   render() {
     const {id} = this.props.match.params
     let result = this.props.cacheArticle[id] || {}
+    console.log(this.props)
     return (
       <ReactPlaceholder customPlaceholder={awesomePlaceholder} ready={!!result.content}>
-        <MyComponent data={result}/>
+        <MyComponent data={result} />
       </ReactPlaceholder>)
-
   }
 
-  componentWillMount() {
+  componentDidMount() {
     const {id} = this.props.match.params
     let result = this.props.cacheArticle[id]
     if (!result) {
@@ -68,11 +76,5 @@ class Article extends Component {
   }
 }
 
-function showData(state) {
-  return {
-    cacheArticle: state.cacheArticle,
-    loadingStatus: state.ArticleLoading
-  }
-}
 
-export default connect(showData)(Article);
+export default Article;

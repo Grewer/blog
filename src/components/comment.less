@@ -1,0 +1,60 @@
+.comments {
+  border-top: 1px solid rgba(150, 150, 150, 0.2);
+  color: rgba(0, 0, 0, 0.6);
+  margin: 50px 0;
+
+  span {
+    margin-right: 10px;
+  }
+  li {
+    position: relative;
+    padding: 25px 0;
+    border-bottom: 1px solid rgba(150, 150, 150, 0.2);
+  }
+  img.avatar {
+    position: absolute;
+    top: 25px;
+    left: 0;
+    width: 50px;
+    float: left;
+  }
+  .commentBody {
+    margin-left: 70px;
+    display: block;
+    .author {
+      line-height: 1.5em;
+      margin: 0;
+      padding: 0;
+      span {
+        color: #555;
+      }
+      .time {
+        font-weight: normal;
+        padding-left: 10px;
+        font-size: 0.7em;
+        color: #666;
+      }
+    }
+  }
+  .operate {
+    font-size: 14px;
+    margin-top: 20px;
+    text-align: right;
+    > span {
+      margin-right: 10px;
+      margin-bottom: 5px;
+      cursor: pointer;
+      &:hover,&:hover>span{
+        color: #409eff;
+      }
+      > span {
+        margin-right: 5px;
+      }
+    }
+  }
+}
+
+
+.nowrap {
+  white-space: nowrap;
+}

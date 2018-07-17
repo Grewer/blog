@@ -23,6 +23,7 @@ const menu = [
 ]
 
 @pureRender
+@connect(state=>({phoneListStatus: state.phoneListStatus}))
 class PhoneList extends Component {
   render() {
     let {phoneListStatus} = this.props
@@ -45,11 +46,4 @@ class PhoneList extends Component {
     </QueueAnim>);
   }
 }
-
-function showData(state) {
-  return {
-    phoneListStatus: state.phoneListStatus
-  }
-}
-
-export default connect(showData)(PhoneList);
+export default PhoneList;
