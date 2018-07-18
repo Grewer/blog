@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React from 'react';
 import styles from './index.less'
 import {Link, NavLink} from "react-router-dom";
 import {connect} from 'react-redux';
@@ -24,7 +24,7 @@ const menu = [
 
 @connect()
 @CSSModules(styles)
-class Header extends Component {
+class Header extends React.PureComponent {
   render() {
     // 父组件为 route 时 shouldupdate 第二个参数一直为 null
     let {dispatch} = this.props
@@ -34,7 +34,7 @@ class Header extends Component {
         {
           menu.map(i => {
             return (<li key={i.name}>
-              <NavLink to={i.path} activestyleName="active" exact>
+              <NavLink to={i.path}  activeClassName={this.props.styles.active} exact>
                 <svg className="icon" aria-hidden="true">
                   <use xlinkHref={'#icon-' + i.icon}></use>
                 </svg>

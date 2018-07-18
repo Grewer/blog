@@ -635,3 +635,11 @@ li {
 	fill: currentColor;
 	overflow: hidden;
 }
+
+h3 {
+	font-size: 1.8rem;
+	color: #666666;
+	font-weight: bold;
+	padding-top: 10px;
+	line-height: 2.2em;
+}

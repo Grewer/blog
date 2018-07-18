@@ -1,9 +1,8 @@
-import React, {Component} from 'react';
+import React from 'react';
 import {connect} from 'react-redux';
 import QueueAnim from 'rc-queue-anim';
 import {Link} from "react-router-dom";
 import pureRender from "grewer-pure-render";
-
 const menu = [
   {
     path: '/',
@@ -21,10 +20,9 @@ const menu = [
     icon: 'guidangxiangmu'
   }
 ]
-
 @pureRender
 @connect(state=>({phoneListStatus: state.phoneListStatus}))
-class PhoneList extends Component {
+class PhoneList extends React.PureComponent {
   render() {
     let {phoneListStatus} = this.props
     return (<QueueAnim type={['right', 'left']}
