@@ -6,12 +6,12 @@ import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
 @pureRender
 class ToMessage extends Component {
   render() {
-    return (<div><Editor
+    return (<React.Fragment><Editor
       editorClassName="editor"
     />
       <div style={{textAlign:'right',marginTop:'20px'}}>
         <button className="btn">提交</button>
-      </div></div>);
+      </div></React.Fragment>);
   }
 }
 

@@ -15,7 +15,7 @@ function filterContent(val) {
 function MyComponent(data) {
   const {ArticleList} = data.data
   return (
-    <div>
+    <React.Fragment>
       <QueueAnim>
         {
           ArticleList.map((i, index) =>
@@ -33,7 +33,7 @@ function MyComponent(data) {
         }
       </QueueAnim>
       <Pagination></Pagination>
-    </div>);
+    </React.Fragment>);
 }
 
 const awesomePlaceholder = (

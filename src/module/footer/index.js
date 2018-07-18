@@ -1,11 +1,10 @@
 import React, {Component} from 'react';
 import styles from './index.less'
-import pureRender from "grewer-pure-render";
 import CSSModules from "react-css-modules";
 
+
 @CSSModules(styles)
-@pureRender
-class Footer extends Component {
+class Footer extends React.PureComponent {
   // 待加上 博客园 GitHub 链接
   render() {
     return (<div styleName="footer">

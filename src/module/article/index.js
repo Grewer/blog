@@ -1,45 +1,9 @@
 import React, {Component} from 'react';
 import {connect} from "react-redux";
-import Comment from '../../components/comment'
-import styles from './index.less'
-import ToMessage from "../../components/toMessage";
 import ReactPlaceholder from 'react-placeholder';
 import {TextBlock, RectShape} from 'react-placeholder/lib/placeholders';
-import CSSModules from "react-css-modules";
 import pureRender from "grewer-pure-render";
-
-function MyComponent(data) {
-  const result = data.data
-  if(!result) return;
-  return (
-    <div className="aPage">
-      <p>{result.title}</p>
-      <div className="content">
-        {result.content}
-      </div>
-      {
-        result.time ? (<span title="发布时间"><svg className="icon" aria-hidden="true">
-                  <use xlinkHref="#icon-shijian"></use>
-                  </svg>
-          {result.time}</span>) : null
-      }
-      <div className="category">
-        {
-          result.label.map((i, index) => {
-            return <span key={index}>{i}</span>
-          })
-        }
-      </div>
-      <div className="post_next_prev">
-        <div className="prev">上一篇: <span>{result.prev.name}</span></div>
-        <div className="next">下一篇: <span>{result.next.name}</span></div>
-      </div>
-      <Comment comment={result.comments}/>
-      <ToMessage></ToMessage>
-    </div>
-  )
-
-}
+import ArticleBody from './articleBody'
 
 
 const awesomePlaceholder = (
@@ -51,18 +15,16 @@ const awesomePlaceholder = (
 
 @pureRender
 @connect(state => ({
-  cacheArticle: state.cacheArticle,
-  loadingStatus: state.ArticleLoading
+  cacheArticle: state.cacheArticle
 }))
-@CSSModules(styles)
 class Article extends Component {
   render() {
+    console.log('run')
     const {id} = this.props.match.params
     let result = this.props.cacheArticle[id] || {}
-    console.log(this.props)
     return (
       <ReactPlaceholder customPlaceholder={awesomePlaceholder} ready={!!result.content}>
-        <MyComponent data={result} />
+        <ArticleBody data={result} />
       </ReactPlaceholder>)
   }
 
