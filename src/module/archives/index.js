@@ -6,7 +6,7 @@ import ReactPlaceholder from 'react-placeholder';
 import {TextBlock, RectShape} from 'react-placeholder/lib/placeholders';
 import CSSModules from 'react-css-modules';
 
-function MyComponent({data}) {
+function MyComponent({data,go}) {
   return (<ul>
     {data.map(i => (<li key={i.time}>
         <h3>{i.time}</h3>
@@ -14,7 +14,7 @@ function MyComponent({data}) {
           {i.list.map((j, _index) => {
             return (
               <li key={_index} onClick={() => {
-                // router to article/id
+                go.push('/article/'+j.id)
               }}>
                 <div className="ellipsis">{j.title}</div>
                 <div styleName="date">{j.time}</div>
@@ -45,9 +45,10 @@ class Archives extends Component {
 
   render() {
     MyComponent = CSSModules(MyComponent, this.props.styles)
+    console.log(this)
     return (
       <ReactPlaceholder customPlaceholder={awesomePlaceholder} ready={!!this.state.list}>
-        <MyComponent data={this.state.list}/>
+        <MyComponent data={this.state.list} go={this.props.history}/>
       </ReactPlaceholder>)
   }
 

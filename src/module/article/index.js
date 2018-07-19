@@ -34,6 +34,7 @@ class Article extends Component {
     if (!result) {
       this.props.dispatch({type: 'GETONE', data: id})
     }
+    document.getElementById('root').scrollIntoView(true);
     // TODO 后期 给评论添加 hold 分开评论和文章接口  检测滚动 若滚动到评论上方200px 则再加载评论
   }
 }
