@@ -10,16 +10,17 @@ import Article from './module/article'
 import NotFound from "./components/404";
 import Archives from './module/archives'
 import CSSModules from 'react-css-modules';
+import Scroll from './module/scroll'
 
 class App extends Component {
   render() {
     return (
       <Router>
-        <Route render={CSSModules(({location}) => {
+        <Route render={CSSModules(({location,history}) => {
           return (
             <div styleName="App">
               <Header location={location}/>
-              <PhoneList key="PhoneList"/>
+              <PhoneList key="PhoneList" push={history.push} location={location} />
               <div styleName="body">
                 <Switch key={location.pathname}>
                   <Route path="/" exact component={Home}/>
@@ -29,6 +30,7 @@ class App extends Component {
                   <Route path="*" component={NotFound}/>
                 </Switch>
               </div>
+              <Scroll></Scroll>
               <Footer/>
             </div>
           )

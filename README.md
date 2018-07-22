@@ -42,7 +42,7 @@ npm start
 ### 待添加:
 - propTypes
 - classNames
-- react-placeholder or react-hold
+
 
 ### Ps:
 今年开了很多坑,希望能够在过年前能将坑都填完

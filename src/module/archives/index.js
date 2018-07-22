@@ -52,7 +52,7 @@ class Archives extends Component {
       </ReactPlaceholder>)
   }
 
-  componentWillMount() {
+  componentDidMount() {
     if (this.state.list.length === 0) {
       fetch.post('http://api.cn/getArchives').then(data => {
         this.setState({list: data.data})

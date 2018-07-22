@@ -1,8 +1,8 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import QueueAnim from 'rc-queue-anim';
-import {Link} from "react-router-dom";
 import pureRender from "grewer-pure-render";
+
 const menu = [
   {
     path: '/',
@@ -20,23 +20,35 @@ const menu = [
     icon: 'guidangxiangmu'
   }
 ]
+
 @pureRender
-@connect(state=>({phoneListStatus: state.phoneListStatus}))
+@connect(state => ({phoneListStatus: state.phoneListStatus}))
 class PhoneList extends React.PureComponent {
+  href = (ev) => {
+    const target = ev.target || ev;
+    if (target.nodeName === 'LI') {
+      const to = target.getAttribute('to')
+      if (to && this.props.location.pathname !== to) {
+        this.props.push(to)
+        this.props.dispatch({type: 'CHANGE'})
+      }
+    } else {
+      this.href(target.parentNode)
+    }
+  }
+
   render() {
     let {phoneListStatus} = this.props
     return (<QueueAnim type={['right', 'left']}
                        ease={['easeOutQuart', 'easeInOutQuart']} className="phoneList">
       {
-        phoneListStatus ? <ul key="ul">{
+        phoneListStatus ? <ul key="ul" onClick={this.href}>{
             menu.map(i => {
-              return (<Link to={i.path} key={i.path}>
-                <li>
-                  <svg className="icon" aria-hidden="true">
-                    <use xlinkHref={'#icon-' + i.icon}></use>
-                  </svg>
-                  {i.name}</li>
-              </Link>)
+              return (<li to={i.path} key={i.path}>
+                <svg className="icon" aria-hidden="true">
+                  <use xlinkHref={'#icon-' + i.icon}></use>
+                </svg>
+                {i.name}</li>)
             })}
           </ul>
           : null
@@ -44,4 +56,5 @@ class PhoneList extends React.PureComponent {
     </QueueAnim>);
   }
 }
+
 export default PhoneList;
