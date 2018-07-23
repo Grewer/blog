@@ -45,7 +45,6 @@ class Archives extends Component {
 
   render() {
     MyComponent = CSSModules(MyComponent, this.props.styles)
-    console.log(this)
     return (
       <ReactPlaceholder customPlaceholder={awesomePlaceholder} ready={!!this.state.list}>
         <MyComponent data={this.state.list} go={this.props.history}/>
