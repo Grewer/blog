@@ -53,15 +53,18 @@ Mock.mock(/getCategory$/, {
   'data|5':[
     {
       type:'@sentence(2, 4)',
-      'list|10':[
-        {
-          title:'@sentence(2, 4)',
-          time:'@date("yyyy-MM-dd")'
-        }
-      ]
+      'id|+1': 1,
     }
   ]
 })
+
+// 'list|10':[
+//   {
+//     title:'@sentence(2, 4)',
+//     time:'@date("yyyy-MM-dd")'
+//   }
+// ]
+
 
 Mock.mock(/getArchives$/, {
   'data|5':[
