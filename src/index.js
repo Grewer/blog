@@ -10,6 +10,7 @@ import reducer from './redux/reducers'
 import rootSaga from './redux/saga'
 import {Provider} from 'react-redux'
 import "react-placeholder/lib/reactPlaceholder.css";
+
 let Mock = require('mockjs')
 Mock.setup({
   timeout: '1000-1500'
@@ -49,32 +50,40 @@ Mock.mock('http://api.cn/getArticleById', {
   }
 })
 
-Mock.mock(/getCategory$/, {
-  'data|5':[
+Mock.mock(/getCategoryList$/, {
+  'data|5': [
     {
-      type:'@sentence(2, 4)',
+      type: '@sentence(2, 4)',
       'id|+1': 1,
     }
   ]
 })
+Mock.mock(/getOneCategory$/, {
+  'data': {
+    name: '@sentence(2, 4)',
+    'list|10': [
+      {
+        'id|+1': 1,
+        title: '@sentence(2, 4)',
+        time: '@date("yyyy-MM-dd")'
+      }
+    ]
+  }
 
-// 'list|10':[
-//   {
-//     title:'@sentence(2, 4)',
-//     time:'@date("yyyy-MM-dd")'
-//   }
-// ]
+})
+
+
 
 
 Mock.mock(/getArchives$/, {
-  'data|5':[
+  'data|5': [
     {
-      time:'@date("yyyy")',
-      'list|2-30':[
+      time: '@date("yyyy")',
+      'list|2-30': [
         {
-          title:'@sentence(2, 4)',
+          title: '@sentence(2, 4)',
           'time': '@date("MM-dd")',
-          'id|+1':'1'
+          'id|+1': '1'
         }
       ]
     }
