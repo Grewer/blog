@@ -26,7 +26,6 @@ class Category extends Component {
     fetch.post('http://api.cn/getOneCategory', {id: ev.target.dataset.cid}).then(data => {
       this.setState({category: data.data, loading: false})
     }).catch(err => {})
-
   }
 
   render() {
@@ -46,7 +45,12 @@ class Category extends Component {
                 <ul>
                   {
                     category.list.map(v => {
-                      return <li key={v.id}>{v.title}</li>
+                      return <li key={v.id}>
+                        <div styleName="title">{v.title}</div>
+                        <div styleName="content">
+                          {v.content}
+                        </div>
+                      </li>
                     })
                   }
                 </ul>

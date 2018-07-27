@@ -65,7 +65,8 @@ Mock.mock(/getOneCategory$/, {
       {
         'id|+1': 1,
         title: '@sentence(2, 4)',
-        time: '@date("yyyy-MM-dd")'
+        time: '@date("yyyy-MM-dd")',
+        'content': '@paragraph'
       }
     ]
   }
