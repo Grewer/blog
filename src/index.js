@@ -10,6 +10,7 @@ import reducer from './redux/reducers'
 import rootSaga from './redux/saga'
 import {Provider} from 'react-redux'
 import "react-placeholder/lib/reactPlaceholder.css";
+import {HashRouter as Router} from 'react-router-dom'
 
 let Mock = require('mockjs')
 Mock.setup({
@@ -99,5 +100,7 @@ const store = createStore(
 sagaMiddleware.run(rootSaga)
 
 
-ReactDOM.render(<Provider store={store}><App/></Provider>, document.getElementById('root'));
+ReactDOM.render(<Provider store={store}>
+  <Router><App/></Router>
+</Provider>, document.getElementById('root'));
 registerServiceWorker();

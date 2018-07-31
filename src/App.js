@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import styles from './App.less'
-import {HashRouter as Router, Route, Switch} from 'react-router-dom';
+import { Route, Switch} from 'react-router-dom';
 import Home from './module/home'
 import Category from './module/category'
 import Header from './module/header'
@@ -15,7 +15,6 @@ import Scroll from './module/scroll'
 class App extends Component {
   render() {
     return (
-      <Router>
         <Route render={CSSModules(({location,history}) => {
           return (
             <div styleName="App">
@@ -35,7 +34,6 @@ class App extends Component {
             </div>
           )
         }, styles)}/>
-      </Router>
     );
   }
 }
