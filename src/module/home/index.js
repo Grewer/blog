@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import styles from './index.less'
 import {connect} from 'react-redux';
 import QueueAnim from 'rc-queue-anim';
 import {Link} from "react-router-dom";
