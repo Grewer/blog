@@ -1,18 +1,22 @@
+
 import csshook from 'css-modules-require-hook/preset';
 
-console.log('run')
-
-const lessParser = require('postcss-less').parse;
-require('css-modules-require-hook')({
-  extensions: ['.less', '.css'],
-  processorOpts: {parser: lessParser},
-  preprocessCss: (data, filename) => {
-    // return require('less').render(data);
-    return lessParser(css, filename);
-  },
-  camelCase: true,
-  generateScopedName: '[name]__[local]__[hash:base64:8]'
+require('babel-polyfill')
+require('babel-register')({
+  presets: ['es2015', 'react'],
+  plugins: ['add-module-exports']
 })
+
+// import assethook from 'asset-require-hook';
+// assethook({
+//   extensions: ['png', 'jpg']
+// });
+
+require('asset-require-hook')({
+  extensions: ['jpg', 'png', 'gif', 'webp'],
+  limit: 8000
+})
+
 
 
 const express = require("express");
@@ -25,22 +29,21 @@ app.use(cookieParser());
 app.use(bodyParser.json());
 
 
-require('babel-polyfill')
-require('babel-register')({presets: ['es2015', 'react', 'stage-0']})
+import '../src/static/css/common.css'
+
 
 import React from 'react';
-// import App from '../src/App';
-import Test from '../src/test';
-import '../src/static/css/common.css'
+import App from '../src/App';
+// import Test from '../src/test';
 import {createStore, applyMiddleware} from 'redux'
 import createSagaMiddleware from 'redux-saga'
 import reducer from '../src/redux/reducers'
 import rootSaga from '../src/redux/saga'
 import {Provider} from 'react-redux'
 import "react-placeholder/lib/reactPlaceholder.css";
-// import Router from '../src/router'
-
+// console.dir(require('node-less'))
 import {renderToString, renderToStaticMarkup} from 'react-dom/server';
+import {StaticRouter} from "react-router";
 
 const sagaMiddleware = createSagaMiddleware()
 const store = createStore(
@@ -61,9 +64,10 @@ app.use((req, res, next) => {
   }
   const frontComponents = renderToString(
     (<Provider store={store}>
-      {/*<Router/>*/}
-      {/*<App/>*/}
-      <Test/>
+      <StaticRouter>
+        <App/>
+      </StaticRouter>
+      {/*<Test/>*/}
     </Provider>)
   )
   res.send(frontComponents)

@@ -1,5 +1,4 @@
-import React, {Component} from 'react';
-import pureRender from "grewer-pure-render";
+import React from 'react';
 import fetch from "../../redux/ajax-config";
 import styles from './index.less'
 import ReactPlaceholder from 'react-placeholder';
@@ -33,9 +32,8 @@ const awesomePlaceholder = (
   </div>
 );
 
-@pureRender
 @CSSModules(styles)
-class Archives extends Component {
+class Archives extends React.PureComponent {
   constructor(props) {
     super(props)
     this.state = {

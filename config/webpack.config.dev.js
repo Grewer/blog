@@ -203,6 +203,21 @@ module.exports = {
               loader: "less-loader" // compiles Less to CSS
             }]
           },
+          {
+            test: /\.scss/,
+            use: [{
+              loader: "style-loader" // creates style nodes from JS strings
+            }, {
+              loader: "css-loader",
+              options: {
+                importLoaders: 1,
+                modules: true,
+                localIdentName: '[name]_[local]_[hash:base64:5]',
+              }
+            }, {
+              loader: "sass-loader" // compiles Less to CSS
+            }]
+          },
 
           // "file" loader makes sure those assets get served by WebpackDevServer.
           // When you `import` an asset, you get its (virtual) filename.

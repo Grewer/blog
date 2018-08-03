@@ -1,8 +1,7 @@
-import React, {Component} from 'react';
+import React from 'react';
 import {connect} from "react-redux";
 import ReactPlaceholder from 'react-placeholder';
 import {TextBlock, RectShape} from 'react-placeholder/lib/placeholders';
-import pureRender from "grewer-pure-render";
 import ArticleBody from './articleBody'
 
 
@@ -13,11 +12,10 @@ const awesomePlaceholder = (
   </div>
 );
 
-@pureRender
 @connect(state => ({
   cacheArticle: state.cacheArticle
 }))
-class Article extends Component {
+class Article extends React.PureComponent {
   render() {
     console.log('run')
     const {id} = this.props.match.params

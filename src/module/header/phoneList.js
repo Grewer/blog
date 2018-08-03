@@ -1,7 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import QueueAnim from 'rc-queue-anim';
-import pureRender from "grewer-pure-render";
 
 const menu = [
   {
@@ -21,7 +20,6 @@ const menu = [
   }
 ]
 
-@pureRender
 @connect(state => ({phoneListStatus: state.phoneListStatus}))
 class PhoneList extends React.PureComponent {
   href = (ev) => {

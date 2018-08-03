@@ -1,10 +1,8 @@
-import React, {Component} from 'react';
-import pureRender from "grewer-pure-render";
+import React from 'react';
 import {Editor} from 'react-draft-wysiwyg';
 import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
 
-@pureRender
-class ToMessage extends Component {
+class ToMessage extends React.PureComponent {
   render() {
     return (<React.Fragment><Editor
       editorClassName="editor"

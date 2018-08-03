@@ -1,19 +1,18 @@
-import React, {Component} from 'react';
-import default_avatar from '../static/pic/avatar_default.png'
-import pureRender from "grewer-pure-render";
+import React from 'react';
+
+// const default_avatar = require('../static/pic/avatar.png')
 import styles from './comment.less'
 import CSSModules from "react-css-modules";
 
-@pureRender
 @CSSModules(styles)
-class Comment extends Component {
+class Comment extends React.PureComponent {
   render() {
     let comments = this.props.comment || []
     return (<div styleName="comments">
       <ul>
         {
           comments.map(i => <li key={i.id}>
-              <img styleName="avatar" src={i.avatar || default_avatar} alt={i.name}/>
+              <img styleName="avatar"  alt={i.name}/>
               <div styleName="commentBody">
                 <div styleName="author"><span>{i.name}</span><span styleName="time">{i.time}</span></div>
                 <div>

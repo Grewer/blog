@@ -144,6 +144,21 @@ module.exports = {
               name: 'static/media/[name].[hash:8].[ext]',
             },
           },
+          {
+            test: /\.scss/,
+            use: [{
+              loader: "style-loader" // creates style nodes from JS strings
+            }, {
+              loader: "css-loader",
+              options: {
+                importLoaders: 1,
+                modules: true,
+                localIdentName: '[name]_[local]_[hash:base64:5]',
+              }
+            }, {
+              loader: "sass-loader" // compiles Less to CSS
+            }]
+          },
           // Process JS with Babel.
           {
             test: /\.(js|jsx|mjs)$/,

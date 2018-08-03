@@ -1,15 +1,13 @@
-import React, {Component} from 'react';
+import React from 'react';
 import fetch from "../../redux/ajax-config";
-import pureRender from "grewer-pure-render";
 import CSSModules from 'react-css-modules';
 import styles from './index.less'
 import ReactPlaceholder from 'react-placeholder';
 import ReactLoading from 'react-loading';
 
 
-@pureRender
 @CSSModules(styles)
-class Category extends Component {
+class Category extends React.PureComponent {
   constructor(props) {
     super(props)
     this.state = {

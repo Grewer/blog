@@ -1,11 +1,9 @@
-import React, {Component} from 'react';
+import React from 'react';
 import styles from './pagination.less'
-import pureRender from "grewer-pure-render";
 import CSSModules from "react-css-modules";
 
 @CSSModules(styles)
-@pureRender
-class Pagination extends Component {
+class Pagination extends React.PureComponent {
   render() {
     return (<div styleName="pagination">
       <button className="btn-prev" disabled={true}>
