@@ -3,7 +3,7 @@ const lessParser = require('postcss-less').parse;
 // const lessParser = require('node-less');
 //
 module.exports = {
-  generateScopedName: '[name]__[local]___[hash:base64:5]',
+  generateScopedName: '[name]_[local]_[hash:base64:5]', //格式必须和 webpack.config.prod.js 中的格式相同
   extensions: ['.less','.css'],
   processorOpts: {parser: lessParser},
   // preprocessCss: (data, filename) => {
