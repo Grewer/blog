@@ -26,7 +26,6 @@ const menu = [
 @CSSModules(styles)
 class Header extends React.PureComponent {
   render() {
-    // 父组件为 route 时 shouldupdate 第二个参数一直为 null
     let {dispatch} = this.props
     return (<div styleName="navMenu">
       <h2 styleName="title"><Link to="/">Grewer</Link></h2>

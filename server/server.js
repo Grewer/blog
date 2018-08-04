@@ -1,23 +1,17 @@
-
+// 这个页面 引入语法虽然有 es5也有 es6 ,但是是一样的,后续会规范整齐
 import csshook from 'css-modules-require-hook/preset';
 
 require('babel-polyfill')
 require('babel-register')({
   presets: ['es2015', 'react'],
-  plugins: ['add-module-exports']
+  plugins: ['add-module-exports', "transform-runtime"],
 })
 
-// import assethook from 'asset-require-hook';
-// assethook({
-//   extensions: ['png', 'jpg']
-// });
+import assethook from 'asset-require-hook';
 
-require('asset-require-hook')({
+assethook({
   extensions: ['jpg', 'png', 'gif', 'webp'],
-  limit: 8000
-})
-
-
+});
 
 const express = require("express");
 const bodyParser = require("body-parser");
@@ -29,9 +23,8 @@ app.use(cookieParser());
 app.use(bodyParser.json());
 
 
-import '../src/static/css/common.css'
 
-
+// index.js start
 import React from 'react';
 import App from '../src/App';
 // import Test from '../src/test';
@@ -41,7 +34,6 @@ import reducer from '../src/redux/reducers'
 import rootSaga from '../src/redux/saga'
 import {Provider} from 'react-redux'
 import "react-placeholder/lib/reactPlaceholder.css";
-// console.dir(require('node-less'))
 import {renderToString, renderToStaticMarkup} from 'react-dom/server';
 import {StaticRouter} from "react-router";
 
@@ -51,26 +43,47 @@ const store = createStore(
   applyMiddleware(sagaMiddleware)
 )
 sagaMiddleware.run(rootSaga)
+// index.js end
 
 
 // 接口模块
-// app.use("/user",userRoute);
+// app.use("/api",userRoute);
 
-// 映射到build后的路径
-//设置build以后的文件路径 项目上线用
+import assetmanifest from "../build/asset-manifest"
+
 app.use((req, res, next) => {
-  if (req.url.startsWith('/user/') || req.url.startsWith('/static/')) {
+  if (req.url.startsWith('/api/') || req.url.startsWith('/static/')) {
     return next()
   }
+  const context = {}
   const frontComponents = renderToString(
     (<Provider store={store}>
-      <StaticRouter>
+      <StaticRouter context={context}
+                    location={req.url}
+      >
         <App/>
       </StaticRouter>
-      {/*<Test/>*/}
     </Provider>)
   )
-  res.send(frontComponents)
+
+
+  const template =  `<!DOCTYPE html>
+    <html lang="en">
+     <head>
+        <meta charset="utf-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1, 
+               maximum-scale=1, minimum-scale=1, user-scalable=no" />
+             <meta name="theme-color" content="#000000">
+                <title>Grewer Blog</title>
+             <link rel="stylesheet" href=${assetmanifest["main.css"]}>
+        </head>
+       <body>
+         <div id="root">${frontComponents}</div>
+         <script src=${assetmanifest["vendor.js"]}></script>
+         <script src=${assetmanifest["main.js"]}></script>
+        </body>
+    </html>`
+  res.send(template)
 
   // return res.sendFile(path.resolve('build/index.html'))
 })

@@ -11,9 +11,12 @@
     padding: 25px 0;
     border-bottom: 1px solid rgba(150, 150, 150, 0.2);
   }
-  img.avatar {
+  .avatar {
+    background: url("../static/pic/avatar.png") no-repeat;
+    background-size: 100%;
     position: absolute;
     top: 25px;
+    height: 50px;
     left: 0;
     width: 50px;
     float: left;
@@ -44,7 +47,7 @@
       margin-right: 10px;
       margin-bottom: 5px;
       cursor: pointer;
-      &:hover,&:hover>span{
+      &:hover, &:hover > span {
         color: #409eff;
       }
       > span {
@@ -53,7 +56,6 @@
     }
   }
 }
-
 
 .nowrap {
   white-space: nowrap;

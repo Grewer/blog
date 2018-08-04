@@ -65,4 +65,16 @@ js: main  30k
 
 3. todo 后续使用 gzip 
    
+   
+package.json 中 babel 需添加如此
+```
+"presets": [
+      "react-app",
+      "es2015" //会引起 server 中的 import 错误
+    ],
+    "plugins": [
+      "transform-decorators-legacy",
+      "transform-class-properties" // 解决class 中使用 foo=()=>{} 报错
+    ]
+```
 
