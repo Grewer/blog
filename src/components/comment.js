@@ -1,6 +1,9 @@
 import React from 'react';
 import styles from './comment.less'
 import CSSModules from "react-css-modules";
+//
+// const default_avatar = require('../static/pic/avatar.png')
+// console.log(default_avatar)
 
 @CSSModules(styles)
 class Comment extends React.PureComponent {

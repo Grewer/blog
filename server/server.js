@@ -34,7 +34,7 @@ import reducer from '../src/redux/reducers'
 import rootSaga from '../src/redux/saga'
 import {Provider} from 'react-redux'
 import "react-placeholder/lib/reactPlaceholder.css";
-import {renderToString, renderToStaticMarkup} from 'react-dom/server';
+import {renderToString, renderToNodeStream} from 'react-dom/server';
 import {StaticRouter} from "react-router";
 
 const sagaMiddleware = createSagaMiddleware()
@@ -55,8 +55,23 @@ app.use((req, res, next) => {
   if (req.url.startsWith('/api/') || req.url.startsWith('/static/')) {
     return next()
   }
+
+  res.write(`<!DOCTYPE html>
+    <html lang="en">
+     <head>
+        <meta charset="utf-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1, 
+               maximum-scale=1, minimum-scale=1, user-scalable=no" />
+             <meta name="theme-color" content="#000000">
+                <title>Grewer Blog</title>
+             <link rel="stylesheet" href=${assetmanifest["main.css"]}>
+             <script src="http://at.alicdn.com/t/font_663383_eztdg7dew9a.js"></script>
+        </head>
+       <body>
+         <div id="root">`)
+
   const context = {}
-  const frontComponents = renderToString(
+  const frontComponents = renderToNodeStream(
     (<Provider store={store}>
       <StaticRouter context={context}
                     location={req.url}
@@ -66,24 +81,16 @@ app.use((req, res, next) => {
     </Provider>)
   )
 
+  frontComponents.pipe(res, {end: false})
 
-  const template =  `<!DOCTYPE html>
-    <html lang="en">
-     <head>
-        <meta charset="utf-8">
-            <meta name="viewport" content="width=device-width, initial-scale=1, 
-               maximum-scale=1, minimum-scale=1, user-scalable=no" />
-             <meta name="theme-color" content="#000000">
-                <title>Grewer Blog</title>
-             <link rel="stylesheet" href=${assetmanifest["main.css"]}>
-        </head>
-       <body>
-         <div id="root">${frontComponents}</div>
+  frontComponents.on('end', _ => {
+    res.write(`</div>
          <script src=${assetmanifest["vendor.js"]}></script>
          <script src=${assetmanifest["main.js"]}></script>
         </body>
-    </html>`
-  res.send(template)
+    </html>`)
+    res.end()
+  })
 
   // return res.sendFile(path.resolve('build/index.html'))
 })
