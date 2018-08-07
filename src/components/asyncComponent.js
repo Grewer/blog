@@ -1,17 +1,20 @@
 import React from 'react';
 import ReactLoading from 'react-loading';
 
+let hasLoading = null // 可用此判定是否已加载过一次
+
 export default (importComponentFunc) => (
   class AsyncComponent extends React.Component {
     state = {Component: null}
 
-    // 基本的异步组件已完成,but该如何判定是否是第一次加载
 
     componentDidMount() {
       this.load()
     }
 
     load = () => {
+      hasLoading = true
+
       importComponentFunc().then(module => {
         this.setState({Component: module.default})
       }).catch(err => {
@@ -20,6 +23,8 @@ export default (importComponentFunc) => (
     }
 
     render() {
+      console.log('hasloading', hasLoading)
+
       const {Component} = this.state;
       return Component ? <Component  {...this.props}/> :
         <ReactLoading type="bubbles" className="m-auto" color="#409eff" height={50} width={100}/>;

@@ -35,7 +35,7 @@ import rootSaga from '../src/redux/saga'
 import {Provider} from 'react-redux'
 import "react-placeholder/lib/reactPlaceholder.css";
 import {renderToString, renderToNodeStream} from 'react-dom/server';
-import {StaticRouter} from "react-router";
+import {BrowserRouter} from "react-router";
 
 const sagaMiddleware = createSagaMiddleware()
 const store = createStore(
@@ -73,11 +73,11 @@ app.use((req, res, next) => {
   const context = {}
   const frontComponents = renderToNodeStream(
     (<Provider store={store}>
-      <StaticRouter context={context}
+      <BrowserRouter context={context}
                     location={req.url}
       >
         <App/>
-      </StaticRouter>
+      </BrowserRouter>
     </Provider>)
   )
 
