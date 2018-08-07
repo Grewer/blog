@@ -116,7 +116,8 @@
     ],
     "plugins": [
       "transform-decorators-legacy",
-      "transform-class-properties"
+      "transform-class-properties",
+      "syntax-dynamic-import"
     ]
   },
   "homepage": ".",
@@ -125,6 +126,7 @@
   },
   "devDependencies": {
     "babel-plugin-add-module-exports": "^0.2.1",
+    "babel-plugin-syntax-dynamic-import": "^6.18.0",
     "babel-plugin-transform-class-properties": "^6.24.1",
     "babel-preset-es2015": "^6.24.1",
     "cookie-parser": "^1.4.3",

@@ -643,3 +643,7 @@ h3 {
 	padding-top: 10px;
 	line-height: 2.2em;
 }
+
+.m-auto{
+	margin: auto;
+}
