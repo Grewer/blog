@@ -1,9 +1,6 @@
 import React from 'react';
 import styles from './comment.less'
 import CSSModules from "react-css-modules";
-//
-// const default_avatar = require('../static/pic/avatar.png')
-// console.log(default_avatar)
 
 @CSSModules(styles)
 class Comment extends React.PureComponent {
@@ -13,7 +10,7 @@ class Comment extends React.PureComponent {
       <ul>
         {
           comments.map(i => <li key={i.id}>
-              <span styleName="avatar" />
+              <img src={require('../static/pic/avatar.png')} styleName="avatar" alt="logo"/>
               <div styleName="commentBody">
                 <div styleName="author"><span>{i.name}</span><span styleName="time">{i.time}</span></div>
                 <div>
