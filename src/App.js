@@ -6,9 +6,13 @@ import Footer from './module/footer'
 import PhoneList from './module/header/phoneList'
 import NotFound from "./components/404";
 import Scroll from './module/scroll'
-import AsyncComponent from './components/asyncComponent'
+// import AsyncComponent from './components/asyncComponent'
 import Loadable from 'react-loadable'
 
+// import Home from './module/home'
+// import Category from './module/category'
+// import Article from './module/article'
+// import Archives from './module/archives'
 
 import LoadingComponent from './components/loadingComponent'
 
@@ -17,9 +21,9 @@ const loading = (props) => {
   // if (props.error) {
   //   return <div>Error! <button onClick={props.retry}>Retry</button></div>;
   // } else if (props.timedOut) {
-    // return <div>Taking a long time... <button onClick={props.retry}>Retry</button></div>;
+  // return <div>Taking a long time... <button onClick={props.retry}>Retry</button></div>;
   // } else if (props.pastDelay) {
-    return <LoadingComponent/>
+  return <LoadingComponent/>
   // } else {
   //   return null;
   // }
@@ -29,7 +33,11 @@ const Article = Loadable({loader: () => import( './module/article'), loading, ti
 const Category = Loadable({loader: () => import( './module/category'), loading, timeout: 10000})
 const Home = Loadable({loader: () => import( './module/home'), loading, timeout: 10000})
 const Archives = Loadable({loader: () => import( './module/archives'), loading, timeout: 10000})
+
 // const Archives = AsyncComponent(() => import( './module/archives'))
+
+
+
 
 class App extends Component {
   render() {

@@ -17,7 +17,6 @@ const awesomePlaceholder = (
 }))
 class Article extends React.PureComponent {
   render() {
-    console.log('run')
     const {id} = this.props.match.params
     let result = this.props.cacheArticle[id] || {}
     return (

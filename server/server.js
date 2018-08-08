@@ -55,6 +55,27 @@ app.use((req, res, next) => {
   if (req.url.startsWith('/api/') || req.url.startsWith('/static/')) {
     return next()
   }
+  console.log(req.url)
+
+
+  const context = {} // 这边的数据该如何获取
+  const frontComponents = renderToNodeStream(
+    (<Provider store={store}>
+      <StaticRouter context={context}
+                    location={req.url}
+      >
+        <App/>
+      </StaticRouter>
+    </Provider>)
+  )
+
+  if (context.url) {
+    res.writeHead(301, {
+      Location: context.url
+    })
+    res.end()
+    return;
+  }
 
   res.write(`<!DOCTYPE html>
     <html lang="en">
@@ -70,18 +91,10 @@ app.use((req, res, next) => {
        <body>
          <div id="root">`)
 
-  const context = {}
-  const frontComponents = renderToNodeStream(
-    (<Provider store={store}>
-      <StaticRouter context={context}
-                    location={req.url}
-      >
-        <App/>
-      </StaticRouter>
-    </Provider>)
-  )
+  // 如果不加 main.js  那么只能获取基本的格式,没有数据, 思路1:可以在此处获取数据,加入 window 中,使得具有初始数据
 
   frontComponents.pipe(res, {end: false})
+
 
   frontComponents.on('end', _ => {
     res.write(`</div>

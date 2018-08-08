@@ -120,7 +120,7 @@
       "syntax-dynamic-import"
     ]
   },
-  "homepage": ".",
+  "homepage": "/",
   "eslintConfig": {
     "extends": "react-app"
   },

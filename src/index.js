@@ -9,7 +9,7 @@ import reducer from './redux/reducers'
 import rootSaga from './redux/saga'
 import {Provider} from 'react-redux'
 import "react-placeholder/lib/reactPlaceholder.css";
-import {HashRouter as Router} from 'react-router-dom'
+import {BrowserRouter as Router} from 'react-router-dom'
 
 let Mock = require('mockjs')
 Mock.setup({
