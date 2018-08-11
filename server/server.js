@@ -29,7 +29,6 @@ app.use(bodyParser.json());
 // index.js start
 import React from 'react';
 import App from '../src/App';
-// import Test from '../src/test';
 import {createStore, applyMiddleware} from 'redux'
 import createSagaMiddleware from 'redux-saga'
 import reducer from '../src/redux/reducers'

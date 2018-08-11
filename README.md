@@ -48,23 +48,7 @@ npm start
 今年开了很多坑,希望能够在过年前能将坑都填完
 
 
-### 打包优化插件:
-原 js,css 大小
-- js: 1.1M
-- css: 31k
-  
-1. 添加 optimize-css-assets-webpack-plugin  
-css -> 30k  
-// todo 后续使用 css-module 
-
-2. 使用 CommonsChunkPlugin 将 node-module 库单独引用出来:  
-js: main  30k  
-    vendor 1MB
-
-    结论,如果不使用 cdn 加速 那么还不如不提取;
-
-3. todo 后续使用 gzip 
-   
+### ssr 注意事项
    
 package.json 中 babel 需添加如此
 ```
@@ -78,6 +62,9 @@ package.json 中 babel 需添加如此
     ]
 ```
 
+- 插件问题,大多是下载插件和配置的原因
+- HTML 中的路径需添加 '/'
+- 最好添加 favicon.ico,不然换一次路径就会产生一次访问
 
-### 2018.8
-添加了 ssr,但是图片的渲染并没有找到正确的方法,暂时只在 css 中引入;
+
+
