@@ -1,8 +1,10 @@
-// 这个页面 引入语法虽然有 es5也有 es6 ,但是是一样的,后续会规范整齐
 import csshook from 'css-modules-require-hook/preset';
 
-require('babel-polyfill')
-require('babel-register')({
+import 'babel-polyfill'
+
+import BabelRegister from 'babel-register'
+
+BabelRegister({
   presets: ['es2015', 'react'],
   plugins: ['add-module-exports', "transform-runtime"],
 })
@@ -52,61 +54,59 @@ sagaMiddleware.run(rootSaga)
 import assetmanifest from "../build/asset-manifest"
 
 app.use((req, res, next) => {
-  if (req.url.startsWith('/api/') || req.url.startsWith('/static/')) {
-    return next()
-  }
-  console.log(req.url)
+    if (req.url.startsWith('/api/') || req.url.startsWith('/static/') || req.url.startsWith('/favicon.ico')) {
+      return next()
+    }
 
+    const context = {} // 这边的数据该如何获取
+    const frontComponents = renderToNodeStream(
+      (<Provider store={store}>
+        <StaticRouter context={context}
+                      location={req.url}
+        >
+          <App/>
+        </StaticRouter>
+      </Provider>)
+    )
 
-  const context = {} // 这边的数据该如何获取
-  const frontComponents = renderToNodeStream(
-    (<Provider store={store}>
-      <StaticRouter context={context}
-                    location={req.url}
-      >
-        <App/>
-      </StaticRouter>
-    </Provider>)
-  )
+    if (context.url) {
+      res.writeHead(301, {
+        Location: context.url
+      })
+      res.end()
+      return;
+    }
 
-  if (context.url) {
-    res.writeHead(301, {
-      Location: context.url
-    })
-    res.end()
-    return;
-  }
-
-  res.write(`<!DOCTYPE html>
+    res.write(`<!DOCTYPE html>
     <html lang="en">
      <head>
         <meta charset="utf-8">
             <meta name="viewport" content="width=device-width, initial-scale=1, 
                maximum-scale=1, minimum-scale=1, user-scalable=no" />
              <meta name="theme-color" content="#000000">
-                <title>Grewer Blog</title>
-             <link rel="stylesheet" href=${assetmanifest["main.css"]}>
+             <link rel="shortcut icon" href="/favicon.ico">
+             <title>Grewer Blog</title>
+             <link rel="stylesheet" href=/${assetmanifest["main.css"]}>
              <script src="http://at.alicdn.com/t/font_663383_eztdg7dew9a.js"></script>
         </head>
        <body>
          <div id="root">`)
+    // 如果不加 main.js  那么只能获取基本的格式,没有数据, 思路1:可以在此处获取数据,加入 window 中,使得具有初始数据
 
-  // 如果不加 main.js  那么只能获取基本的格式,没有数据, 思路1:可以在此处获取数据,加入 window 中,使得具有初始数据
+    frontComponents.pipe(res, {end: false})
 
-  frontComponents.pipe(res, {end: false})
-
-
-  frontComponents.on('end', _ => {
-    res.write(`</div>
-         <script src=${assetmanifest["vendor.js"]}></script>
-         <script src=${assetmanifest["main.js"]}></script>
+    frontComponents.on('end', _ => {
+      res.write(`</div>
+         <script src=/${assetmanifest["vendor.js"]}></script>
+         <script src=/${assetmanifest["main.js"]}></script>
         </body>
     </html>`)
-    res.end()
-  })
-
-  // return res.sendFile(path.resolve('build/index.html'))
-})
+      res.end()
+    })
+    // 记得在 src 后面添加 "/" ,因为 asset-manifest 中的路径为相对路径
+    // return res.sendFile(path.resolve('build/index.html'))
+  }
+)
 
 app.use('/', express.static(path.resolve('build')))
 
