@@ -16,6 +16,8 @@ assethook({
 });
 
 const express = require("express");
+const graphqlHTTP = require('express-graphql');
+const {buildSchema} = require('graphql');
 const bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser");
 // const userRoute = require("./userRoute");
@@ -47,8 +49,29 @@ sagaMiddleware.run(rootSaga)
 // index.js end
 
 
+
+const schema = buildSchema(`
+  type Hello{
+    name:String
+  }
+  type Query {
+    hello: Hello
+  }
+`);
+const root = {
+  hello: {
+    name: 'Grewer'
+  }
+};
+
 // 接口模块
-// app.use("/api",userRoute);
+app.use("/api", graphqlHTTP({
+  schema: schema,
+  rootValue: root,
+  graphiql: true,
+}));
+
+
 
 import assetmanifest from "../build/asset-manifest"
 
