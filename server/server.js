@@ -1,19 +1,24 @@
+import express from "express"
+import graphqlHTTP from 'express-graphql'
+import {buildSchema} from 'graphql'
+import bodyParser from "body-parser"
+import cookieParser from "cookie-parser"
+//服务初始化
 
-const express = require("express");
-const graphqlHTTP = require('express-graphql');
-const {buildSchema} = require('graphql');
-const bodyParser = require("body-parser");
-const cookieParser = require("cookie-parser");
+import mysql from 'mysql'
+import myConnection from 'express-myconnection'
+import dbOptions from './connect'
+//数据库连接
+
 const app = express();
 const path = require('path');
+//新建 express 对象
+
+
+app.use(myConnection(mysql, dbOptions, 'pool'))
 
 app.use(cookieParser());
 app.use(bodyParser.json());
-
-
-
-
-
 
 const schema = buildSchema(`
   type Hello{
@@ -39,6 +44,7 @@ app.use("/api", graphqlHTTP({
 
 
 import ssrRender from './ssr'
+
 app.use(ssrRender)
 
 app.use('/', express.static(path.resolve('build')))
