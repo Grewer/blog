@@ -35,12 +35,30 @@ const root = {
 };
 
 // 接口模块
-app.use("/api", graphqlHTTP({
-  schema: schema,
-  rootValue: root,
-  graphiql: true,
-}));
+// app.use("/api", graphqlHTTP({
+//   schema: schema,
+//   rootValue: root,
+//   graphiql: true,
+// }));
 
+app.use("/api", (req, res, next) => {
+  console.log(req.query);
+  req.getConnection((err, conn) => {
+    if (err) {
+      return next
+    } else {
+      conn.query('select * from test', [], (err, result) => {
+        if (err) {
+          return next(err)
+        } else {
+          console.log('success', result)
+          res.json(result)
+        }
+      })
+    }
+  })
+
+});
 
 
 import ssrRender from './ssr'
