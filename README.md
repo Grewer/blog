@@ -41,7 +41,6 @@ npm start
 
 ### 待添加:
 - propTypes
-- classNames
 
 
 ### Ps:
@@ -71,4 +70,4 @@ package.json 中 babel 需添加如此
 ### 服务端插件
 
 - mysql
-- express-myconnection@
+- express-myconnection

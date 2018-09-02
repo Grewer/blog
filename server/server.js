@@ -5,60 +5,55 @@ import bodyParser from "body-parser"
 import cookieParser from "cookie-parser"
 //服务初始化
 
-import mysql from 'mysql'
-import myConnection from 'express-myconnection'
-import dbOptions from './connect'
-//数据库连接
 
 const app = express();
-const path = require('path');
-//新建 express 对象
-
-
-app.use(myConnection(mysql, dbOptions, 'pool'))
-
 app.use(cookieParser());
 app.use(bodyParser.json());
+const path = require('path');
+
+//新建 express 对象
+
+import db from './connect'
+
+// const test = db.query('select  * from test', function (err, rows, fields) {
+//   if (err) throw err;
+//   console.log('The solution is: ', rows);
+// });
+
+
+// const createPromise = (sql) => {
+//   return Promise((resolve, reject) => {
+//     db.query(sql, function (err, rows, fields) {
+//       if (err) throw err;
+//       console.log('The solution is: ', rows);
+//       resolve(rows)
+//     });
+//   })
+// }
+
+const test = [{user: 'grewer'}]
 
 const schema = buildSchema(`
-  type Hello{
-    name:String
+  type testArr {
+    user:String
   }
+  
   type Query {
-    hello: Hello
+    hello: [testArr]
   }
 `);
+
 const root = {
-  hello: {
-    name: 'Grewer'
-  }
+  hello: test
 };
 
 // 接口模块
-// app.use("/api", graphqlHTTP({
-//   schema: schema,
-//   rootValue: root,
-//   graphiql: true,
-// }));
+app.use("/api", graphqlHTTP({
+  schema: schema,
+  rootValue: root,
+  graphiql: true,// 是否图形化
+}));
 
-app.use("/api", (req, res, next) => {
-  console.log(req.query);
-  req.getConnection((err, conn) => {
-    if (err) {
-      return next
-    } else {
-      conn.query('select * from test', [], (err, result) => {
-        if (err) {
-          return next(err)
-        } else {
-          console.log('success', result)
-          res.json(result)
-        }
-      })
-    }
-  })
-
-});
 
 
 import ssrRender from './ssr'
