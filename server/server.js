@@ -1,6 +1,6 @@
 import express from "express"
 import graphqlHTTP from 'express-graphql'
-import {buildSchema} from 'graphql'
+import { buildSchema} from 'graphql'
 import bodyParser from "body-parser"
 import cookieParser from "cookie-parser"
 //服务初始化
@@ -15,42 +15,40 @@ const path = require('path');
 
 import db from './connect'
 
-// const test = db.query('select  * from test', function (err, rows, fields) {
-//   if (err) throw err;
-//   console.log('The solution is: ', rows);
-// });
 
-
-// const createPromise = (sql) => {
-//   return Promise((resolve, reject) => {
-//     db.query(sql, function (err, rows, fields) {
-//       if (err) throw err;
-//       console.log('The solution is: ', rows);
-//       resolve(rows)
-//     });
-//   })
-// }
-
-const test = [{user: 'grewer'}]
+const createPromise = (sql) => {
+  return new Promise((resolve, reject) => {
+    db.query(sql, function (err, rows, fields) {
+      if (err) throw err;
+      console.log('The solution is: ', rows);
+      resolve(rows)
+    });
+  })
+}
 
 const schema = buildSchema(`
   type testArr {
     user:String
   }
-  
+
   type Query {
     hello: [testArr]
   }
 `);
 
 const root = {
-  hello: test
+  hello(obj, args, context, info) {
+    // console.log(args.db)
+    return createPromise('select  * from test')
+  }
 };
+
 
 // 接口模块
 app.use("/api", graphqlHTTP({
   schema: schema,
   rootValue: root,
+  // context: {db},
   graphiql: true,// 是否图形化
 }));
 
